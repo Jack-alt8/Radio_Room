@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Radio_Room
 {
-    internal class Userlogin
+    public class Userlogin
     {
-        public string userName { get; set; }
+        
     }
 }
