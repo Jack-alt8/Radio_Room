@@ -1,21 +1,11 @@
 # Radio_Room
 
-Main idea:
-Create a console game that asks questions like D'n D, playing a certain choice displayed per question.
+## About:
+Radio_Room is an interactive World War 2 text-based web game demo. Help  Private Ben get through the battlefield to safety. Choose between two responses for every section of dialogue he sends to you through the radio, which is displayed on the screen. The weather is displayed in the upper left corner for context of what Private Ben’s situation is like… wherever he is. Because the game is a demo there are only two rooms. There are also no save options, but you can look at your progress by pressing the “progress button” which navigates to a .txt file. Refresh the page to play again and try something different! 
 
-Does the radio room refer to the room in which you the player are? and you're communicating with the character you created? so the character asks you questions on his path on the adventure and you give guidance
-(in that case maybe there should be a second character name to enter)
+### Features:
+* Create 3 or more unit tests for your application. Isolate written code to test and determine if it works as intended. This includes the output to the .txt file, retrieval of data from the database, retrieval of data from the API, and the input and output to the webpage.
 
-Features (ideas):
+* Add comments to your code explaining how you are using at least 2 of the SOLID principles. Through the use of SOLID, make sure the code is extended in a sustainable, manageable and efficient way.
 
-* Multinarrative (first make a single narrative, then build on it)
-* It could use different letters and symbols to create pictures for the visual side
-* creating your own user with a name (which is used repeatedly when there are conversations)
-* creating your own character with 6 different character type options (robot, soldier, alien, celestial, Medic, sentinel - should have multiple strengths and weaknesses per character type - maybe have different versions of each character type eventually)
-* a health and damage count for your chosen character type's equipment, as well as any other features (look at a character design sheet for ref)
-* a story path, different kinds of obsticles with their own health or damage count
-
-Need to figure out:
-
-* How could this be used as an API
-* the simplest version of this I could create (no character types, single narrative, up to 6 big obstacles in which there are 6 smaller obstacles, maybe just one level at first then build on it)
+* Write information/data to a text file. The player’s choices will be logged and written to a text file for the player to review and be able to try something different next time they play.
