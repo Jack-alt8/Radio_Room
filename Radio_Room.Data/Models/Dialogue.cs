@@ -15,7 +15,8 @@ namespace Radio_Room.Domain
         /// "Welcome to the Radio Room"
         /// "Press any key to continue or 'enter' to stop."
 
-        public string DialogueLine { get; set; }
+        public int DialogueId { get; set; }
 
+        public string DialogueLine { get; set; }
     }
 }
