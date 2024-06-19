@@ -17,7 +17,7 @@
 *.userprefs
 
 # API
-*APIKey.txt
+*Components/Pages/APIkey.txt
 
 # Mono auto generated files
 mono_crash.*

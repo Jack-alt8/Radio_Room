@@ -1,19 +1,64 @@
-﻿@page "/counter"
+﻿@using System.Security.Cryptography.Xml;
+@using System;
+@using System.Collections.Generic;
+@using System.Net.Http;
+@using System.Net.Http.Headers;
+@using RestSharp;
+@page "/counter"
 @rendermode InteractiveServer
+ 
 
 <PageTitle>Counter</PageTitle>
 
 <h1>Counter</h1>
 
-<p role="status">Current count: @currentCount</p>
-
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<p role="status">Current Weather: @weatherCheck</p>
 
 @code {
     private int currentCount = 0;
 
-    private void IncrementCount()
+    private string weatherCheck = "";
+
+
+    public class DataObject
     {
-        currentCount++;
+        public Weather[] weather = new Weather[1];
+    }
+
+    public class Weather
+    {
+        public int id { get; set; }
+        public string main { get; set; }
+        public string description { get; set; }
+        public string icon { get; set; }
+    }
+
+    private const string url = "https://api.openweathermap.org/data/2.5/weather?lat=51.0344&lon=2.3768&appid=";
+    private const string urlParameter = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        HttpClient client = new HttpClient();
+        client.BaseAddress = new Uri(url);
+
+        
+       
+
+        // List data response.
+        HttpResponseMessage response = client.GetAsync(url).Result;
+        if (response.IsSuccessStatusCode)
+        {
+            // Parse the response body.
+            var dataObjects = response.Content.ReadAsAsync<DataObject>().Result;
+            
+            
+            weatherCheck = dataObjects.weather[0].description;
+            
+        }
+        else
+        {
+            Console.WriteLine("{0} ({ 1})", (int)response.StatusCode, response.ReasonPhrase);
+        }
+        client.Dispose();
     }
 }
