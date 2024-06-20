@@ -11,3 +11,54 @@ Welcome to your new app.
 
     </MudPaper>
 </MudDivider>
+
+<p role="status">Current Weather in Dunkirk: @weatherCheck </p>
+
+@code {
+    private int currentCount = 0;
+
+    private string weatherCheck = "";
+
+
+    public class DataObject
+    {
+        public Weather[] weather = new Weather[1];
+    }
+
+    public class Weather
+    {
+        public int id { get; set; }
+        public string main { get; set; }
+        public string description { get; set; }
+        public string icon { get; set; }
+    }
+
+    private const string url = "https://api.openweathermap.org/data/2.5/weather?lat=51.0344&lon=2.3768&appid=83243d54965cce99d4fb8a4c8c1738bc";
+    private const string urlParameter = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        HttpClient client = new HttpClient();
+        client.BaseAddress = new Uri(url);
+
+
+
+
+        // List data response.
+        HttpResponseMessage response = client.GetAsync(url).Result;
+        if (response.IsSuccessStatusCode)
+        {
+            // Parse the response body.
+            var dataObjects = response.Content.ReadAsAsync<DataObject>().Result;
+
+
+            weatherCheck = dataObjects.weather[0].description;
+
+        }
+        else
+        {
+            Console.WriteLine("{0} ({ 1})", (int)response.StatusCode, response.ReasonPhrase);
+        }
+        client.Dispose();
+    }
+}
