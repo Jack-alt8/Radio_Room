@@ -3,12 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Radio_Room.Tests", "..\Radio_Room.Tests\Radio_Room.Tests.csproj", "{A71F70C6-23FE-4D07-8EF1-7F532212660C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Radio_Room.UI", "Radio_Room.UI.csproj", "{F1CD0516-1829-4D25-9940-0A66FADDAD30}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A71F70C6-23FE-4D07-8EF1-7F532212660C} = {A71F70C6-23FE-4D07-8EF1-7F532212660C}
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A71F70C6-23FE-4D07-8EF1-7F532212660C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A71F70C6-23FE-4D07-8EF1-7F532212660C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A71F70C6-23FE-4D07-8EF1-7F532212660C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A71F70C6-23FE-4D07-8EF1-7F532212660C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F1CD0516-1829-4D25-9940-0A66FADDAD30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F1CD0516-1829-4D25-9940-0A66FADDAD30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1CD0516-1829-4D25-9940-0A66FADDAD30}.Release|Any CPU.ActiveCfg = Release|Any CPU
