@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Radio_Room.Domain;
+using Radio_Room.UI;
 
 
-namespace Radio_Room.Data.dbContext
+namespace Radio_Room.UI.dbContext
 {
-    public class Radio_RoomContext : DbContext
+    public class Radio_RoomDbContext : DbContext
     {
        
 

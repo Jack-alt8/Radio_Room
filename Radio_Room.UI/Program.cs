@@ -1,5 +1,6 @@
 using MudBlazor.Services;
 using Radio_Room.UI.Components;
+using Radio_Room.UI.Services;
 using System;
 using System.Linq;
 
@@ -11,6 +12,7 @@ builder.Services.AddMudServices();
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+builder.Services.AddSingleton<IDialogueLines, DialogueLines>();
 
 var app = builder.Build();
 

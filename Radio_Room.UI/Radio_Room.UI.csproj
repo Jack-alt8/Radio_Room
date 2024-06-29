@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Components\Pages\Welcome.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.6" />
@@ -16,6 +20,10 @@
     </PackageReference>
     <PackageReference Include="MudBlazor" Version="6.20.0" />
     <PackageReference Include="RestSharp" Version="111.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Components\Pages\Welcome.razor" />
   </ItemGroup>
 
 </Project>

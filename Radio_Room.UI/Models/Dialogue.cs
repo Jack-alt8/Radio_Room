@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Radio_Room.Data;
 
-namespace Radio_Room.Domain
+namespace Radio_Room.UI
 {
     public class Dialogue
     {
