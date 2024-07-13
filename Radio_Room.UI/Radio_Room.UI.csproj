@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.61" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.6" />
@@ -18,12 +19,16 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="MudBlazor" Version="6.20.0" />
-    <PackageReference Include="RestSharp" Version="111.2.0" />
+    <PackageReference Include="MudBlazor" Version="7.0.0" />
+    <PackageReference Include="RestSharp" Version="111.3.0" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="Components\Pages\Welcome.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Save\" />
   </ItemGroup>
 
 </Project>

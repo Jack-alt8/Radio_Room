@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Radio_Room.Data.dbContext;
+using Radio_Room.UI.dbContext;
 
 #nullable disable
 
 namespace Radio_Room.Data.Migrations
 {
-    [DbContext(typeof(Radio_RoomContext))]
+    [DbContext(typeof(Radio_RoomDbContext))]
     [Migration("20240612134757_First Commit")]
     partial class FirstCommit
     {
