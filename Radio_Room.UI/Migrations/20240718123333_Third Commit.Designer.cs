@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Radio_Room.UI.dbContext;
 
@@ -10,9 +11,11 @@ using Radio_Room.UI.dbContext;
 namespace Radio_Room.Data.Migrations
 {
     [DbContext(typeof(Radio_RoomDbContext))]
-    partial class Radio_RoomContextModelSnapshot : ModelSnapshot
+    [Migration("20240718123333_Third Commit")]
+    partial class ThirdCommit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.6");

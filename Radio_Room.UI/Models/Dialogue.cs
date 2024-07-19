@@ -12,7 +12,7 @@ namespace Radio_Room.UI
 
         public int DialogueId { get; set; }
 
-        public int PlayerResponseOption { get; set; }
+        public int? PlayerResponseOption { get; set; }
 
         public string DialogueLine { get; set; }
     }

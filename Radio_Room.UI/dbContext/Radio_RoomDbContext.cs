@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Radio_Room.UI;
-using Radio_Room.UI.DataControllers;
 
 
 namespace Radio_Room.UI.dbContext
@@ -11,7 +10,7 @@ namespace Radio_Room.UI.dbContext
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=DataBase/Dialogues.db");
+            optionsBuilder.UseSqlite("ConnectionStrings:SQLiteDefault");
         }
 
         public DbSet<Dialogue> Dialogues { get; set; }

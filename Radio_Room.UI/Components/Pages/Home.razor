@@ -1,7 +1,6 @@
 ﻿@page "/"
-@inject Services.IDialogueLines dialoguelines
-@using Models
-
+@using HtmlAgilityPack;
+@inject IDialogService DialogService
 
 <h1>Welcome!</h1>
 
@@ -10,17 +9,116 @@
 <p role="status">Current Weather in Dunkirk: @weatherCheck </p>
 <p role="status">temperature:  </p>
 
+
+
+<MudButton @onclick="OpenWelcomeAsync" Variant="Variant.Filled" Color="Color.Primary">
+    How to play...
+</MudButton>
+
+@code {
+        public string WelcomeDialogScrollable_Dialog = "Here's how you play...";
+
+        private async Task OpenWelcomeAsync()
+        {
+            var options = new DialogOptions { CloseOnEscapeKey = true };
+            //var welcome = await DialogService.ShowAsync<WelcomeDialogScrollable_Dialog>("Welcome to the Radio_Room!", options);
+        }
+      }
+
+<!--Starting dialogue:-->
 <MudStack>
-    <MudPaper Class="pa-3">Line 1 @dialogueLine</MudPaper>
-    <MudPaper Class="pa-3">Line 2 @dialogueLine</MudPaper>
-    <MudPaper Class="pa-3">Line 3 @dialogueLine</MudPaper>
-    <MudPaper Class="pa-3">Line 4 @dialogueLine</MudPaper>
-    <MudPaper Class="pa-3">Line 5 @dialogueLine</MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
 </MudStack>
+
+<!--First response:-->
 <MudButtonGroup>
-    <MudButton> @bind-value=dialogue.DialogueId</MudButton>
-    <MudButton> @bind-value=dialogue.DialogueId</MudButton>
+    <MudButton Class="button" @onclick="@ShowText">
+        This is US (RTO) operator Clay Doberman from the USS Massachusetts battleship.
+        Who is this? @responseOption  
+    </MudButton>
+    <MudButton Class="button" @bind-value=dialogue.PlayerResponseOption>
+        This is (RTO) operator Clay Doberman from the USS Massachusetts battleship.
+        I read you. 
+    </MudButton>
 </MudButtonGroup>
+
+<!--Dialogue after 1st response:-->
+<MudStack hidden="@isTextVisible">
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">Line1 @dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+</MudStack>
+
+<!--Dialogue after 2nd response:-->
+<MudStack hidden="@isTextVisible">
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+</MudStack>
+
+<!--(after 1st response option) 2nd response:-->
+<MudButtonGroup>
+    <MudButton Class="button" @bind-value=dialogue.DialogueId>
+        Yes! Could you describe your surrounding? What's your situation?
+    </MudButton>
+    <MudButton Class="button" @bind-value=dialogue.DialogueId>
+        That must have been terrible! Did you lose your squad?
+    </MudButton>
+</MudButtonGroup>
+
+<!--Dialogue 1A:-->
+<MudStack>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+</MudStack>
+
+<!--Dialogue 1B:-->
+<MudStack>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+</MudStack>
+
+<!--(after 2nd response option) 2nd response:-->
+<MudButtonGroup>
+    <MudButton Class="button" @bind-value=dialogue.DialogueId>
+        I'm going to need more proof of identity.
+        Could you give some more information on your squad commander, 
+        your squad number, and anything else related to identifying you, 
+        so I can check? </MudButton>
+    <MudButton Class="button" @bind-value=dialogue.DialogueId>
+        Why weren't you able to escape with the others?
+        Where's your squad? </MudButton>
+</MudButtonGroup>
+
+<!--Dialogue 2A:-->
+<MudStack>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+</MudStack>
+
+<!--Dialogue 2B:-->
+<MudStack>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+</MudStack>
 
 
 @code {
@@ -41,54 +139,7 @@
         public string icon { get; set; }
     }
 
-    /* //json data from OpenWeather API//
-    "coord": {
-    "lon": 2.3768,
-    "lat": 51.0344
-    },
-    "weather": [
-    {
-    "id": 800,
-    "main": "Clear",
-    "description": "clear sky",
-    "icon": "01n"
-    }
-    ],
-    "base": "stations",
-    "main": {
-    "temp": 288.39,
-    "feels_like": 288.01,
-    "temp_min": 286.58,
-    "temp_max": 290.89,
-    "pressure": 1016,
-    "humidity": 78
-    },
-    "visibility": 10000,
-    "wind": {
-    "speed": 1.93,
-    "deg": 76,
-    "gust": 2.06
-    },
-    "clouds": {
-    "all": 0
-    },
-    "dt": 1719276136,
-    "sys": 
-    {
-    "type": 2,
-    "id": 2006560,
-    "country": "FR",
-    "sunrise": 1719286621,
-    "sunset": 1719346153
-    },
-    "timezone": 7200,
-    "id": 6614519,
-    "name": "Dunkerque",
-    "cod": 200
-    }
-    */
-
-    private const string url = "https://api.openweathermap.org/data/2.5/weather?lat=51.0344&lon=2.3768&appid=";
+    private const string url = "https://api.openweathermap.org/data/2.5/weather?lat=51.0344&lon=2.3768&appid=6cd913fa3ff98759b70505bc464977e5";
     protected override async Task OnInitializedAsync()
     {
         HttpClient client = new HttpClient();
@@ -122,8 +173,64 @@
     /*Dialogue code: */
 
 
-    private string dialogueLine = "";
+
+
+    public int responseOption = 0;
+
+    public string dialogueLine = "";
+
+    public bool isTextVisible = true;
+
+    private void ShowText()
+    {
+        isTextVisible = false;
+    }
 
     Dialogue dialogue = new Dialogue();
+
+
+
+    public static void ConvertHtml()
+    {
+        // Load your HTML content (e.g., from a file or a web request)
+        var htmlDocument = new HtmlDocument();
+        htmlDocument.LoadHtml("Components//Pages//Home.razor");
+
+        // Destination file to write text
+        StreamWriter writer = new StreamWriter("Save//Progress.txt");
+
+        // Select all <p> elements and buttons
+        var paragraphs = htmlDocument.DocumentNode.SelectNodes("//p");
+
+        if (paragraphs != null)
+        {
+            foreach (var paragraph in paragraphs)
+            {
+                string paragraphText = paragraph.InnerText;
+
+                // Process the paragraph text as needed
+
+                //File.WriteAllText("Save//Progress.txt", paragraphText);
+                writer.WriteLine(paragraphText);
+            }
+            writer.Close();
+        }
+    }
+    /* Response and dialogue retrieval functionality
+    public static void GiveResponse()
+    {
+        public string dialogueLine = new Dialogue;
+
+        if ()
+        {
+            foreach (var dialogueLine in dialogueLines)
+            {
+                string responseDialogueText = Dialogue.dialogueLine;
+            }
+        }
+
+    }
+    */
+
 
 }
