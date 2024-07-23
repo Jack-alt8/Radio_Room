@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using MudBlazor.Services;
 using Radio_Room.UI;
 using Radio_Room.UI.Components;
@@ -12,6 +14,8 @@ using System.Runtime.CompilerServices;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddMudServices();
 
+
+
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
@@ -20,8 +24,9 @@ builder.Services.AddDbContext<Radio_RoomDbContext>();
 
 var app = builder.Build();
 
-// 
-SeedData(app);
+
+
+// SeedData(app);
 
 void SeedData(IHost app)
 {
@@ -30,7 +35,7 @@ void SeedData(IHost app)
     using (var scope = scopedFactory.CreateScope())
     {
         var service = scope.ServiceProvider.GetService<DbInitializer>();
-        service.Initialize(builder.Configuration.GetConnectionString("ConnectionStrings:SQLiteDefault"));
+        service.Initialize(builder.Configuration.GetConnectionString("SQLiteDefault"));
     }
 }
 

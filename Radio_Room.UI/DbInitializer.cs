@@ -33,6 +33,7 @@ namespace Radio_Room.UI
         private void ClearDialogues()
         {
             dataContext.Dialogues.RemoveRange(dataContext.Dialogues);
+            var result = dataContext.SaveChanges();
         }
 
         private void InitializeDialogues()

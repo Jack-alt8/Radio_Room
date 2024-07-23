@@ -3,22 +3,50 @@ using System.IO;
 using System.Text;
 using HtmlAgilityPack;
 using System.Reflection.PortableExecutable;
+using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Radio_Room.UI
 {
     public class ProgressSaver
     {
+        private readonly IHtmlContent _razorComponent;
+
+        public ProgressSaver(IHtmlContent razorComponent)
+        {
+            _razorComponent = razorComponent;
+        }
+        /*
+        public string ExtractElementById(string elementId)
+        {
+           
+            var element = _razorComponent.ToHtmlString();
+            // Implement your logic to extract the HTML element by ID
+            // For example:
+            // var extractedElement = "<div>Extracted Element</div>";
+            var razorComponent = new HtmlString("<div id='myElement'>Hello, World!</div>");
+            var extractor = new ProgressSaver(razorComponent);
+            var extractedElement = extractor.ExtractElementById("myElement");
+            return extractedElement;
+        }
+    
+
+    // Usage
+   
+    Console.WriteLine(extractedElement);
+
+        /*
         public static void ConvertHtml()
         {
             // Load your HTML content (e.g., from a file or a web request)
-            var htmlDocument = new HtmlDocument();
-            htmlDocument.LoadHtml("Components//Pages//Welcome.razor");
+            HtmlDocument doc = new HtmlDocument();
+            doc.Load("Components/Pages/Home.razor");
 
             // Destination file to write text
-            StreamWriter writer = new StreamWriter("Save//Progress.txt");
+            StreamWriter writer = new StreamWriter("Save/Progress.txt");
 
             // Select all <p> elements and buttons
-            var paragraphs = htmlDocument.DocumentNode.SelectNodes("//p");
+            var paragraphs = doc.DocumentNode.SelectNodes("//p");
 
             if (paragraphs != null)
             {
@@ -34,7 +62,7 @@ namespace Radio_Room.UI
                 writer.Close();
             }
         }
-        
+        */
         /*
         void CopyFileInChunks(int chunkSize, string srcFilePath, string destFilePath)
         {
