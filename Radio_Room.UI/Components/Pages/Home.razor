@@ -1,5 +1,7 @@
 ﻿@page "/"
 @using HtmlAgilityPack;
+@using Radio_Room.UI.dbContext
+@using Radio_Room.UI
 @inject IDialogService DialogService
 
 <h1>Welcome!</h1>
@@ -34,11 +36,11 @@
 
 <!--First response:-->
 <MudButtonGroup>
-    <MudButton Class="button" @onclick="@ShowText">
+    <MudButton Class="button" @onclick="@ShowText" @onclick="@response">
         This is US (RTO) operator Clay Doberman from the USS Massachusetts battleship.
-        Who is this? @responseOption  
+        Who is this? @responseOption1  
     </MudButton>
-    <MudButton Class="button" @bind-value=dialogue.PlayerResponseOption>
+    <MudButton Class="button" >
         This is (RTO) operator Clay Doberman from the USS Massachusetts battleship.
         I read you. 
     </MudButton>
@@ -64,10 +66,10 @@
 
 <!--(after 1st response option) 2nd response:-->
 <MudButtonGroup>
-    <MudButton Class="button" @bind-value=dialogue.DialogueId>
+    <MudButton Class="button" >
         Yes! Could you describe your surrounding? What's your situation?
     </MudButton>
-    <MudButton Class="button" @bind-value=dialogue.DialogueId>
+    <MudButton Class="button" >
         That must have been terrible! Did you lose your squad?
     </MudButton>
 </MudButtonGroup>
@@ -92,12 +94,12 @@
 
 <!--(after 2nd response option) 2nd response:-->
 <MudButtonGroup>
-    <MudButton Class="button" @bind-value=dialogue.DialogueId>
+    <MudButton Class="button" >
         I'm going to need more proof of identity.
         Could you give some more information on your squad commander, 
         your squad number, and anything else related to identifying you, 
         so I can check? </MudButton>
-    <MudButton Class="button" @bind-value=dialogue.DialogueId>
+    <MudButton Class="button" >
         Why weren't you able to escape with the others?
         Where's your squad? </MudButton>
 </MudButtonGroup>
@@ -168,14 +170,7 @@
         }
         client.Dispose();
     }
-
-    //-----------------------------------------------------------------------------------------
-    /*Dialogue code: */
-
-
-
-
-    public int responseOption = 0;
+    //new Dialogue.PlayerResponseOption = responseOption;
 
     public string dialogueLine = "";
 
@@ -189,7 +184,7 @@
     Dialogue dialogue = new Dialogue();
 
 
-
+    //-------------------------------------------------------------------------------------------------------------------
     public static void ConvertHtml()
     {
         // Load your HTML content (e.g., from a file or a web request)
@@ -216,7 +211,77 @@
             writer.Close();
         }
     }
-    /* Response and dialogue retrieval functionality
+    //-----------------------------------------------------------------------------------------
+    /*Dialogue code: */
+    /* when the player presses a button -> 
+     * a overarching function will be triggered 
+     * - the int will turn into the option picked (a value is assigned per button 1 or 2 on the first option), 
+     * - the database dialogue retrieval method is called
+     * Using the int value the dialogue retrieves a specific set of dialoguelines through the PlayerResponseOption 
+     * (this is the same as the value of the button)*/
+
+    public int responseOption1 = 1;
+
+    public int responseOption2 = 2;
+
+    public static string connectionString = "ConnectionStrings:SQLiteDefault";
+
+    public void response()
+    { 
+        {
+            if (responseOption1 == 0)
+            {
+                DialogueResponsesData.Respond(connectionString);
+            }
+        }
+    }
+
+
+    
+
+    //-------------------------------------------------------------------------------------------------------------------
+
+    //Response and dialogue retrieval functionality
+    public class DialogueResponsesData : Dialogue
+    {
+        public List<DialogueResponses> dialogueResponses = new List<DialogueResponses>();
+        private readonly Radio_RoomDbContext dataContext;
+        public string connectionString = "ConnectionStrings:SQLiteDefault";
+
+        public DialogueResponsesData(Radio_RoomDbContext context) => this.dataContext = context;
+
+        public void Respond(string connectionString)
+        {
+            this.connectionString = connectionString;
+            if (!dataContext.Dialogues.Any())
+            {
+                DialogueQueryFilters();
+            }
+
+        }
+
+        private void DialogueQueryFilters()
+        {
+            //var dialogueResponse = dataContext.Dialogues.Find(0);
+            var playerResponse = int.Parse("1"); //this needs to grab from the Home buttons
+            var dialogueResponses = dataContext.Dialogues.Where(s => s.PlayerResponseOption == playerResponse).ToList(); //this needs to be put into the p tags in home
+
+        }
+
+
+    }
+
+
+
+    public class DialogueResponses
+    {
+        public int DialogueId { get; set; }
+        public string DialogueLine { get; set; }
+        public int PlayerResponseOption { get; set; }
+    }
+    
+    
+     /*
     public static void GiveResponse()
     {
         public string dialogueLine = new Dialogue;

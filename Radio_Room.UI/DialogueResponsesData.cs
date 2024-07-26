@@ -1,61 +1,52 @@
 ﻿using Microsoft.AspNetCore.ResponseCaching;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Query.Internal;
+using MudBlazor;
 using Radio_Room.UI.Components.Pages;
 using Radio_Room.UI.dbContext;
 using SQLitePCL;
 using System.Reflection.Metadata;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 
 
 namespace Radio_Room.UI
 {
-    
-    public class DialogueResponsesData
+
+    public class DialogueResponsesData : Dialogue
     {
-
+        public List<DialogueResponses> dialogueResponses = new List<DialogueResponses>();
         private readonly Radio_RoomDbContext dataContext;
-        private string connectionString;
-        /*
-        public DbResponder(Radio_RoomDbContext context)
-        {
-            this.dataContext = context;
-        }
+        string connectionString = "ConnectionStrings:SQLiteDefault";
 
-        private void Respond(string connectionString)
+        public DialogueResponsesData(Radio_RoomDbContext context) => this.dataContext = context;
+
+        public void Respond(string connectionString)
         {
             this.connectionString = connectionString;
             if (!dataContext.Dialogues.Any())
             {
-                ResponseDialogues();
+                DialogueQueryFilters();
             }
+            
         }
-
-        
-
-        private static void ResponseDialogues()
+        public void DialogueQueryFilters()
         {
-            IEnumerable<Dialogue> dialogues = GetDialogueFromDialoguesDatabase();
-            dataContext.Dialogues.GetAsyncEnumerator(dialogues);
-            var result = dataContext.SaveChanges();
-            Console.WriteLine($"Result: {result}");
+            //var dialogueResponse = dataContext.Dialogues.Find(0);
+            var playerResponse = int.Parse("1"); //this needs to grab from the Home buttons
+            var dialogueResponse = dataContext.Dialogues.Where(s => s.PlayerResponseOption == playerResponse).ToList(); //this needs to be put into the p tags in home
         }
-
-        public class DialogsList { public List<Dialogue> Dialogues = []; };
-
-        private IEnumerable<Dialogue> GetDialogueFromDialoguesDatabase()
-        {
-            string pathToDialogue = "Data Source=DataBase/Dialogues.db";
-
-            var dialogues = ResponseOption;
-
-            return dialogues.Dialogues;
-
-        }*/
     }
 
-    
 
-    
+
+    public class DialogueResponses
+    {
+        public int DialogueId;
+        public string DialogueLine;
+        public int PlayerResponseOption;
+    }
+        
 }
