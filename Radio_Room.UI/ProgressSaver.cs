@@ -16,6 +16,32 @@ namespace Radio_Room.UI
         {
             _razorComponent = razorComponent;
         }
+        public static void ConvertHtml()
+        {
+            // Load your HTML content (e.g., from a file or a web request)
+            var htmlDocument = new HtmlDocument();
+            htmlDocument.LoadHtml("Components/Pages/Home.razor");
+
+            // Destination file to write text
+            StreamWriter writer = new StreamWriter("Save/Progress.txt");
+
+            // Select all <p> elements and buttons
+            var paragraphs = htmlDocument.DocumentNode.SelectNodes("//p");
+
+            if (paragraphs != null)
+            {
+                foreach (var paragraph in paragraphs)
+                {
+                    string paragraphText = paragraph.InnerText;
+
+                    // Process the paragraph text as needed
+
+                    File.WriteAllText("Save/Progress.txt", paragraphText);
+                    writer.WriteLine(paragraphText);
+                }
+                writer.Close();
+            }
+        }
         /*
         public string ExtractElementById(string elementId)
         {

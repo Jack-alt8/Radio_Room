@@ -21,6 +21,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddTransient<DbInitializer>();
 builder.Services.AddDbContext<Radio_RoomDbContext>();
+builder.Services.AddSingleton<IDialogueService, DialogueService>();
 
 var app = builder.Build();
 

@@ -1,4 +1,5 @@
 ﻿@inherits LayoutComponentBase
+@using HtmlAgilityPack;
 
 <MudThemeProvider />
 <MudPopoverProvider />
@@ -9,45 +10,49 @@
     <MudAppBar Elevation="1">
         <MudText Typo="Typo.h5" Class="ml-3">Radio_Room</MudText>
         <MudSpacer />
-        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.Start " OnClick="@((e) => DrawerToggle())" />
+        <MudButton Color="Color.Inherit" Edge="Edge.Start " OnClick="@((e) => ConvertHtml())">
+            See progress <MudNavLink Href="../../Save/Progress.txt" Match="NavLinkMatch.All"></MudNavLink>
+        </MudButton>
     </MudAppBar>
-    <MudDrawer @bind-Open="@_drawerOpen">
-        <NavMenu />
-    </MudDrawer>
     <MudMainContent>
         @Body
     </MudMainContent>
 </MudLayout>
 
-<!--
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
-
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
-</div>
--->
 <div id="blazor-error-ui">
     An unhandled error has occurred.
-    <a href="" class="reload">Reload</a>
+    <a href="/Error" class="reload">Reload</a>
     <a class="dismiss">🗙</a>
 </div>
 
 @code {
-    bool _drawerOpen = true;
-
-    void DrawerToggle()
+    public static void ConvertHtml()
     {
-        _drawerOpen = !_drawerOpen;
+
+        // Load your HTML content (e.g., from a file or a web request)
+        var htmlDocument = new HtmlDocument();
+        htmlDocument.LoadHtml("../Pages/Home.razor");
+
+        // Destination file to write text
+        StreamWriter writer = new StreamWriter("../../Save/Progress.txt");
+
+        // Select all <p> elements and buttons
+        var paragraphs = htmlDocument.DocumentNode.SelectNodes("//p");
+
+        if (paragraphs != null)
+        {
+            foreach (var paragraph in paragraphs)
+            {
+                string paragraphText = paragraph.InnerText;
+
+                // Process the paragraph text as needed
+
+                File.WriteAllText("../../Save/Progress.txt", paragraphText);
+                writer.WriteLine(paragraphText);
+            }
+            writer.Close();
+        }
+
     }
 }
 

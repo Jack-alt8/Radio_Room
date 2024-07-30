@@ -4,12 +4,9 @@
 @using Radio_Room.UI
 @inject IDialogueService DialogueService
 
-<h1>Welcome!</h1>
-
 <p role="status">Coordinates: lat = 51.0344 & long = 2.3768 </p>
 <p role="status">Country: FR </p>
 <p role="status">Current Weather in Dunkirk: @weatherCheck </p>
-<p role="status">temperature:  </p>
 
 <MudButton Class="submit">
     @PlayMode
@@ -17,14 +14,13 @@
 
 <!--Starting dialogue:-->
 <MudStack>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue.DialogueLine</MudElement></MudPaper>
 </MudStack>
 
 <!--First response:-->
 <MudButtonGroup>
-    <MudButton Class="button" @onclick="LoadSpecificDialogue(responseOption1)">
+    <MudButton Class="button" OnClick=@((e) => LoadSpecificDialogue(responseOption1))>
         This is US (RTO) operator Clay Doberman from the USS Massachusetts battleship.
         Who is this? 
     </MudButton>
@@ -36,20 +32,20 @@
 
 <!--Dialogue after 1st response:-->
 <MudStack>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">Line1: @dialogue</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">Line1: @dialogue.DialogueId</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
 </MudStack>
 
 <!--Dialogue after 2nd response:-->
 <MudStack>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
 </MudStack>
 
 <!--(after 1st response option) 2nd response:-->
@@ -64,20 +60,20 @@
 
 <!--Dialogue 1A:-->
 <MudStack>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
 </MudStack>
 
 <!--Dialogue 1B:-->
 <MudStack>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
 </MudStack>
 
 <!--(after 2nd response option) 2nd response:-->
@@ -94,27 +90,27 @@
 
 <!--Dialogue 2A:-->
 <MudStack>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
 </MudStack>
 
 <!--Dialogue 2B:-->
 <MudStack>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"></MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"></MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"></MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"></MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"></MudElement></MudPaper>
 </MudStack>
 
 
 @code {
 
     //OpenWeather API call and data retrieval:
-    private string weatherCheck = "";
+    public string weatherCheck = "";
 
     public class DataObject
     {
@@ -133,14 +129,11 @@
     protected override async Task OnInitializedAsync()
     {
         // get all dialogues:
-        await LoadData();
+        //await LoadData();
 
         // web api call
         HttpClient client = new HttpClient();
         client.BaseAddress = new Uri(url);
-
-
-
 
         // List data response.
         HttpResponseMessage response = client.GetAsync(url).Result;
@@ -149,16 +142,11 @@
             // Parse the response body.
             var dataObjects = response.Content.ReadAsAsync<DataObject>().Result;
 
-
-            //coordinates = dataObjects.coord[0].lat;
             weatherCheck = dataObjects.weather[0].description;
-            //temp = dataObjects.temperature;
-            //country = dataObjects.sys[0].country;
-
         }
         else
         {
-            Console.WriteLine("{0} ({ 1})", (int)response.StatusCode, response.ReasonPhrase);
+            Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
         }
         client.Dispose();
     }
@@ -167,31 +155,34 @@
     //-------------------------------------------------------------------------------------------------------------------
     public static void ConvertHtml()
     {
-        // Load your HTML content (e.g., from a file or a web request)
-        var htmlDocument = new HtmlDocument();
-        htmlDocument.LoadHtml("Components//Pages//Home.razor");
+        
+            // Load your HTML content (e.g., from a file or a web request)
+            var htmlDocument = new HtmlDocument();
+            htmlDocument.LoadHtml("Components/Pages/Home.razor");
 
-        // Destination file to write text
-        StreamWriter writer = new StreamWriter("Save//Progress.txt");
+            // Destination file to write text
+            StreamWriter writer = new StreamWriter("Save/Progress.txt");
 
-        // Select all <p> elements and buttons
-        var paragraphs = htmlDocument.DocumentNode.SelectNodes("//p");
+            // Select all <p> elements and buttons
+            var paragraphs = htmlDocument.DocumentNode.SelectNodes("//p");
 
-        if (paragraphs != null)
-        {
-            foreach (var paragraph in paragraphs)
+            if (paragraphs != null)
             {
-                string paragraphText = paragraph.InnerText;
+                foreach (var paragraph in paragraphs)
+                {
+                    string paragraphText = paragraph.InnerText;
 
-                // Process the paragraph text as needed
+                    // Process the paragraph text as needed
 
-                //File.WriteAllText("Save//Progress.txt", paragraphText);
-                writer.WriteLine(paragraphText);
+                    File.WriteAllText("Save/Progress.txt", paragraphText);
+                    writer.WriteLine(paragraphText);
+                }
+                writer.Close();
             }
-            writer.Close();
-        }
+        
     }
     //-----------------------------------------------------------------------------------------
+
     /*Dialogue code: */
     /* when the player presses a button -> 
      * a overarching function will be triggered 
@@ -209,20 +200,6 @@
     public int responseOption = 1;
 
     public static string connectionString = "ConnectionStrings:SQLiteDefault";
-
-    //new Dialogue.PlayerResponseOption = responseOption;
-
-    public string dialogueLine = "";
-    /*
-    public bool isTextVisible = true;
-
-        private void ShowText()
-        {
-        isTextVisible = false;
-    }
-    */
-
-
 
     // new DialogueResponsesData(new Radio_RoomDbContext());
 
