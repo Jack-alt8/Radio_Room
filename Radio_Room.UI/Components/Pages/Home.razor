@@ -2,7 +2,7 @@
 @using HtmlAgilityPack;
 @using Radio_Room.UI.dbContext
 @using Radio_Room.UI
-@inject IDialogService DialogService
+@inject IDialogueService DialogueService
 
 <h1>Welcome!</h1>
 
@@ -11,21 +11,9 @@
 <p role="status">Current Weather in Dunkirk: @weatherCheck </p>
 <p role="status">temperature:  </p>
 
-
-
-<MudButton @onclick="OpenWelcomeAsync" Variant="Variant.Filled" Color="Color.Primary">
-    How to play...
+<MudButton Class="submit">
+    @PlayMode
 </MudButton>
-
-@code {
-        public string WelcomeDialogScrollable_Dialog = "Here's how you play...";
-
-        private async Task OpenWelcomeAsync()
-        {
-            var options = new DialogOptions { CloseOnEscapeKey = true };
-            //var welcome = await DialogService.ShowAsync<WelcomeDialogScrollable_Dialog>("Welcome to the Radio_Room!", options);
-        }
-      }
 
 <!--Starting dialogue:-->
 <MudStack>
@@ -36,9 +24,9 @@
 
 <!--First response:-->
 <MudButtonGroup>
-    <MudButton Class="button" @onclick="@ShowText" @onclick="@response">
+    <MudButton Class="button" @onclick="LoadSpecificDialogue(responseOption1)">
         This is US (RTO) operator Clay Doberman from the USS Massachusetts battleship.
-        Who is this? @responseOption1  
+        Who is this? 
     </MudButton>
     <MudButton Class="button" >
         This is (RTO) operator Clay Doberman from the USS Massachusetts battleship.
@@ -47,8 +35,8 @@
 </MudButtonGroup>
 
 <!--Dialogue after 1st response:-->
-<MudStack hidden="@isTextVisible">
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">Line1 @dialogueLine</MudElement></MudPaper>
+<MudStack>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">Line1: @dialogue</MudElement></MudPaper>
     <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
     <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
     <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
@@ -56,7 +44,7 @@
 </MudStack>
 
 <!--Dialogue after 2nd response:-->
-<MudStack hidden="@isTextVisible">
+<MudStack>
     <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
     <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
     <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogueLine</MudElement></MudPaper>
@@ -144,6 +132,10 @@
     private const string url = "https://api.openweathermap.org/data/2.5/weather?lat=51.0344&lon=2.3768&appid=";
     protected override async Task OnInitializedAsync()
     {
+        // get all dialogues:
+        await LoadData();
+
+        // web api call
         HttpClient client = new HttpClient();
         client.BaseAddress = new Uri(url);
 
@@ -170,18 +162,6 @@
         }
         client.Dispose();
     }
-    //new Dialogue.PlayerResponseOption = responseOption;
-
-    public string dialogueLine = "";
-
-    public bool isTextVisible = true;
-
-    private void ShowText()
-    {
-        isTextVisible = false;
-    }
-
-    Dialogue dialogue = new Dialogue();
 
 
     //-------------------------------------------------------------------------------------------------------------------
@@ -220,27 +200,57 @@
      * Using the int value the dialogue retrieves a specific set of dialoguelines through the PlayerResponseOption 
      * (this is the same as the value of the button)*/
 
+    public string PlayMode = "Play!";
+
     public int responseOption1 = 1;
 
     public int responseOption2 = 2;
 
+    public int responseOption = 1;
+
     public static string connectionString = "ConnectionStrings:SQLiteDefault";
 
-    public void response()
-    { 
+    //new Dialogue.PlayerResponseOption = responseOption;
+
+    public string dialogueLine = "";
+    /*
+    public bool isTextVisible = true;
+
+        private void ShowText()
         {
-            if (responseOption1 == 0)
-            {
-                DialogueResponsesData.Respond(connectionString);
-            }
-        }
+        isTextVisible = false;
     }
+    */
 
 
-    
+
+    // new DialogueResponsesData(new Radio_RoomDbContext());
 
     //-------------------------------------------------------------------------------------------------------------------
 
+    Dialogue dialogue = new Dialogue();
+
+    List<Dialogue> dialogues = new List<Dialogue>();
+    private async Task LoadData()
+    {
+        dialogues = await DialogueService.GetAllDialogues();
+    }
+
+
+
+    public async void LoadSpecificDialogue(int playerResponse)
+    {
+        await LoadData();
+        if (responseOption == 1 || responseOption == 2 || responseOption == 101 || responseOption == 102 || responseOption == 201 || responseOption == 202)
+        {
+            //var playerResponseCheck = int.Parse(playerResponse); //this needs to grab from the buttons
+            var characterResponse = dialogues.Where(s => s.PlayerResponseOption == playerResponse).FirstOrDefault();
+            dialogue = characterResponse;
+            PlayMode = "Play!";
+        }
+    }
+
+    /*
     //Response and dialogue retrieval functionality
     public class DialogueResponsesData : Dialogue
     {
@@ -263,24 +273,14 @@
         private void DialogueQueryFilters()
         {
             //var dialogueResponse = dataContext.Dialogues.Find(0);
-            var playerResponse = int.Parse("1"); //this needs to grab from the Home buttons
+            var playerResponse = int.Parse("1"); //this needs to grab from the buttons
             var dialogueResponses = dataContext.Dialogues.Where(s => s.PlayerResponseOption == playerResponse).ToList(); //this needs to be put into the p tags in home
 
         }
 
 
     }
-
-
-
-    public class DialogueResponses
-    {
-        public int DialogueId { get; set; }
-        public string DialogueLine { get; set; }
-        public int PlayerResponseOption { get; set; }
-    }
-    
-    
+    */
      /*
     public static void GiveResponse()
     {

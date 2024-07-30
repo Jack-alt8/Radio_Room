@@ -26,7 +26,7 @@ var app = builder.Build();
 
 
 
-// SeedData(app);
+SeedData(app);
 
 void SeedData(IHost app)
 {

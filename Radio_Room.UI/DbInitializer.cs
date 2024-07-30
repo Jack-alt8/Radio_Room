@@ -23,17 +23,26 @@ namespace Radio_Room.UI
         public void Initialize(string connectionString)
         {
             this.connectionString = connectionString;
-            if (!dataContext.Dialogues.Any())
+
+            try
+            { 
+                if (dataContext.Dialogues.Any())
+                {
+                    ClearDialogues();
+                    InitializeDialogues();
+                }
+            }
+            catch (ArgumentException ex)
             {
-                ClearDialogues();
-                InitializeDialogues();
+                
             }
         }
 
         private void ClearDialogues()
         {
-            dataContext.Dialogues.RemoveRange(dataContext.Dialogues);
-            var result = dataContext.SaveChanges();
+            var dbDialogues = dataContext.Dialogues.Find(1-28);
+            dataContext.Dialogues.RemoveRange(dbDialogues);
+            dataContext.SaveChanges();
         }
 
         private void InitializeDialogues()
