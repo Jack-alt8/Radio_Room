@@ -19,24 +19,24 @@ builder.Services.AddMudServices();
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
-builder.Services.AddTransient<DbInitializer>();
 builder.Services.AddDbContext<Radio_RoomDbContext>();
 builder.Services.AddSingleton<IDialogueService, DialogueService>();
+builder.Services.AddTransient<ProgressSaver>();
 
 var app = builder.Build();
 
+SaveProgress(app);
 
-
-SeedData(app);
-
-void SeedData(IHost app)
+void SaveProgress(IHost app)
 {
     var scopedFactory = app.Services.GetService<IServiceScopeFactory>();
 
     using (var scope = scopedFactory.CreateScope())
     {
-        var service = scope.ServiceProvider.GetService<DbInitializer>();
-        service.Initialize(builder.Configuration.GetConnectionString("SQLiteDefault"));
+        int chunkSize = 50;
+        var service = scope.ServiceProvider.GetService<ProgressSaver>();
+        ProgressSaver.ConvertHtml();
+        
     }
 }
 

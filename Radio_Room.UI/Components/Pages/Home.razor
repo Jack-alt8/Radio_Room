@@ -1,15 +1,17 @@
 ﻿@page "/"
 @using HtmlAgilityPack;
-@using Radio_Room.UI.dbContext
-@using Radio_Room.UI
+@using Radio_Room.UI.dbContext;
+@using Radio_Room.UI;
 @inject IDialogueService DialogueService
+@using Newtonsoft.Json;
+@rendermode InteractiveServer
 
 <p role="status">Coordinates: lat = 51.0344 & long = 2.3768 </p>
 <p role="status">Country: FR </p>
 <p role="status">Current Weather in Dunkirk: @weatherCheck </p>
 
-<MudButton Class="submit">
-    @PlayMode
+<MudButton Class="button">
+    See progress <MudNavLink Href="../../Save/Progress.txt" Match="NavLinkMatch.All"></MudNavLink>
 </MudButton>
 
 <!--Starting dialogue:-->
@@ -20,11 +22,11 @@
 
 <!--First response:-->
 <MudButtonGroup>
-    <MudButton Class="button" OnClick=@((e) => LoadSpecificDialogue(responseOption1))>
+    <MudButton Class="button" @onclick='(() => LoadSpecificDialogue(responseOption1))'>
         This is US (RTO) operator Clay Doberman from the USS Massachusetts battleship.
         Who is this? 
     </MudButton>
-    <MudButton Class="button" >
+    <MudButton Class="button" @onclick='(() => LoadSpecificDialogue(responseOption2))'>
         This is (RTO) operator Clay Doberman from the USS Massachusetts battleship.
         I read you. 
     </MudButton>
@@ -32,78 +34,78 @@
 
 <!--Dialogue after 1st response:-->
 <MudStack>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">Line1: @dialogue.DialogueId</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
+    <MudPaper Class="pa-3" id="dialogue"><MudElement id="dialogue" HtmlTag="p">@dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue.DialogueLine </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue.DialogueLine </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
 </MudStack>
 
 <!--Dialogue after 2nd response:-->
 <MudStack>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
 </MudStack>
 
 <!--(after 1st response option) 2nd response:-->
 <MudButtonGroup>
-    <MudButton Class="button" >
+    <MudButton Class="button" @onclick='(() => LoadSpecificDialogue(responseOption101))'>
         Yes! Could you describe your surrounding? What's your situation?
     </MudButton>
-    <MudButton Class="button" >
+    <MudButton Class="button" @onclick='(() => LoadSpecificDialogue(responseOption102))'>
         That must have been terrible! Did you lose your squad?
     </MudButton>
 </MudButtonGroup>
 
 <!--Dialogue 1A:-->
 <MudStack>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue.DialogueLine </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue.DialogueLine </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
 </MudStack>
 
 <!--Dialogue 1B:-->
 <MudStack>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
 </MudStack>
 
 <!--(after 2nd response option) 2nd response:-->
 <MudButtonGroup>
-    <MudButton Class="button" >
+    <MudButton Class="button" @onclick='(() => LoadSpecificDialogue(responseOption201))'>
         I'm going to need more proof of identity.
         Could you give some more information on your squad commander, 
         your squad number, and anything else related to identifying you, 
         so I can check? </MudButton>
-    <MudButton Class="button" >
+    <MudButton Class="button" @onclick='(() => LoadSpecificDialogue(responseOption202))'>
         Why weren't you able to escape with the others?
         Where's your squad? </MudButton>
 </MudButtonGroup>
 
 <!--Dialogue 2A:-->
 <MudStack>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
 </MudStack>
 
 <!--Dialogue 2B:-->
 <MudStack>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"></MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"></MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"></MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"></MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"></MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue.DialogueLine</MudElement></MudPaper>
 </MudStack>
 
 
@@ -125,11 +127,51 @@
         public string icon { get; set; }
     }
 
+
+    // Initializing dialogue database
+    public void SeedData()
+    {
+        var context = new Radio_RoomDbContext();
+
+        try
+        {
+            if (!context.Dialogues.Any())
+            {
+                IEnumerable<Dialogue> dialogues = GetDialoguesFromExternalDatabase();
+                context.Dialogues.AddRange(dialogues);
+                var result = context.SaveChanges();
+                Console.WriteLine($"Result: {result}");
+            }
+        }
+        catch (ArgumentException ex)
+        {
+
+        }
+    }
+
+    public class DialogsList { public List<Dialogue> Dialogues = []; };
+
+    private IEnumerable<Dialogue> GetDialoguesFromExternalDatabase()
+    {
+        string pathToDialogueJson = "C:\\Users\\Tech Louisville\\OneDrive\\Documents\\CSProjects\\Radio_Room\\Radio_Room.UI\\Dialogues.json";
+        string jsonString = File.ReadAllText(pathToDialogueJson);
+        var dialogues = JsonConvert.DeserializeObject<DialogsList>(jsonString);
+
+        return dialogues.Dialogues;
+
+    }
+
     private const string url = "https://api.openweathermap.org/data/2.5/weather?lat=51.0344&lon=2.3768&appid=";
     protected override async Task OnInitializedAsync()
     {
+        var context = new Radio_RoomDbContext();
+        context.Dialogues.ExecuteDelete();
+        context.SaveChanges();
+
+        SeedData();
+
         // get all dialogues:
-        //await LoadData();
+        LoadData();
 
         // web api call
         HttpClient client = new HttpClient();
@@ -151,38 +193,6 @@
         client.Dispose();
     }
 
-
-    //-------------------------------------------------------------------------------------------------------------------
-    public static void ConvertHtml()
-    {
-        
-            // Load your HTML content (e.g., from a file or a web request)
-            var htmlDocument = new HtmlDocument();
-            htmlDocument.LoadHtml("Components/Pages/Home.razor");
-
-            // Destination file to write text
-            StreamWriter writer = new StreamWriter("Save/Progress.txt");
-
-            // Select all <p> elements and buttons
-            var paragraphs = htmlDocument.DocumentNode.SelectNodes("//p");
-
-            if (paragraphs != null)
-            {
-                foreach (var paragraph in paragraphs)
-                {
-                    string paragraphText = paragraph.InnerText;
-
-                    // Process the paragraph text as needed
-
-                    File.WriteAllText("Save/Progress.txt", paragraphText);
-                    writer.WriteLine(paragraphText);
-                }
-                writer.Close();
-            }
-        
-    }
-    //-----------------------------------------------------------------------------------------
-
     /*Dialogue code: */
     /* when the player presses a button -> 
      * a overarching function will be triggered 
@@ -191,88 +201,37 @@
      * Using the int value the dialogue retrieves a specific set of dialoguelines through the PlayerResponseOption 
      * (this is the same as the value of the button)*/
 
-    public string PlayMode = "Play!";
-
     public int responseOption1 = 1;
 
     public int responseOption2 = 2;
 
-    public int responseOption = 1;
+    public int responseOption101 = 101;
 
-    public static string connectionString = "ConnectionStrings:SQLiteDefault";
+    public int responseOption102 = 102;
 
-    // new DialogueResponsesData(new Radio_RoomDbContext());
+    public int responseOption201 = 201;
+
+    public int responseOption202 = 202;
 
     //-------------------------------------------------------------------------------------------------------------------
 
     Dialogue dialogue = new Dialogue();
 
     List<Dialogue> dialogues = new List<Dialogue>();
-    private async Task LoadData()
+    private void LoadData()
     {
-        dialogues = await DialogueService.GetAllDialogues();
+        dialogues = DialogueService.GetAllDialogues();
     }
 
-
-
-    public async void LoadSpecificDialogue(int playerResponse)
+    public void LoadSpecificDialogue(int responseOption)
     {
-        await LoadData();
+
         if (responseOption == 1 || responseOption == 2 || responseOption == 101 || responseOption == 102 || responseOption == 201 || responseOption == 202)
         {
-            //var playerResponseCheck = int.Parse(playerResponse); //this needs to grab from the buttons
-            var characterResponse = dialogues.Where(s => s.PlayerResponseOption == playerResponse).FirstOrDefault();
+            //this needs to grab from the buttons
+            var characterResponse = dialogues.Where(s => s.PlayerResponseOption == responseOption).FirstOrDefault();
             dialogue = characterResponse;
-            PlayMode = "Play!";
         }
     }
-
-    /*
-    //Response and dialogue retrieval functionality
-    public class DialogueResponsesData : Dialogue
-    {
-        public List<DialogueResponses> dialogueResponses = new List<DialogueResponses>();
-        private readonly Radio_RoomDbContext dataContext;
-        public string connectionString = "ConnectionStrings:SQLiteDefault";
-
-        public DialogueResponsesData(Radio_RoomDbContext context) => this.dataContext = context;
-
-        public void Respond(string connectionString)
-        {
-            this.connectionString = connectionString;
-            if (!dataContext.Dialogues.Any())
-            {
-                DialogueQueryFilters();
-            }
-
-        }
-
-        private void DialogueQueryFilters()
-        {
-            //var dialogueResponse = dataContext.Dialogues.Find(0);
-            var playerResponse = int.Parse("1"); //this needs to grab from the buttons
-            var dialogueResponses = dataContext.Dialogues.Where(s => s.PlayerResponseOption == playerResponse).ToList(); //this needs to be put into the p tags in home
-
-        }
-
-
-    }
-    */
-     /*
-    public static void GiveResponse()
-    {
-        public string dialogueLine = new Dialogue;
-
-        if ()
-        {
-            foreach (var dialogueLine in dialogueLines)
-            {
-                string responseDialogueText = Dialogue.dialogueLine;
-            }
-        }
-
-    }
-    */
-
 
 }

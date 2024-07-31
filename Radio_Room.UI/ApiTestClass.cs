@@ -6,7 +6,7 @@ namespace Radio_Room.UI
 {
     public class ApiTestClass
     {
-        string candidate = new Home.DataObject();
+        //string candidate = new Home.DataObject();
         public bool IsWorking(string candidate)
         {
             if (candidate == "")

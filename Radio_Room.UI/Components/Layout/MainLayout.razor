@@ -1,5 +1,4 @@
 ﻿@inherits LayoutComponentBase
-@using HtmlAgilityPack;
 
 <MudThemeProvider />
 <MudPopoverProvider />
@@ -10,8 +9,8 @@
     <MudAppBar Elevation="1">
         <MudText Typo="Typo.h5" Class="ml-3">Radio_Room</MudText>
         <MudSpacer />
-        <MudButton Color="Color.Inherit" Edge="Edge.Start " OnClick="@((e) => ConvertHtml())">
-            See progress <MudNavLink Href="../../Save/Progress.txt" Match="NavLinkMatch.All"></MudNavLink>
+        <MudButton Color="Color.Inherit" Edge="Edge.Start " >
+           
         </MudButton>
     </MudAppBar>
     <MudMainContent>
@@ -26,33 +25,6 @@
 </div>
 
 @code {
-    public static void ConvertHtml()
-    {
-
-        // Load your HTML content (e.g., from a file or a web request)
-        var htmlDocument = new HtmlDocument();
-        htmlDocument.LoadHtml("../Pages/Home.razor");
-
-        // Destination file to write text
-        StreamWriter writer = new StreamWriter("../../Save/Progress.txt");
-
-        // Select all <p> elements and buttons
-        var paragraphs = htmlDocument.DocumentNode.SelectNodes("//p");
-
-        if (paragraphs != null)
-        {
-            foreach (var paragraph in paragraphs)
-            {
-                string paragraphText = paragraph.InnerText;
-
-                // Process the paragraph text as needed
-
-                File.WriteAllText("../../Save/Progress.txt", paragraphText);
-                writer.WriteLine(paragraphText);
-            }
-            writer.Close();
-        }
-
-    }
+    
 }
 
