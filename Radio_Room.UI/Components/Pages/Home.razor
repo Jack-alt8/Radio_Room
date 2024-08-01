@@ -16,8 +16,8 @@
 
 <!--Starting dialogue:-->
 <MudStack>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">Hello?</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">Hello? Can anyone read me?</MudElement></MudPaper>
 </MudStack>
 
 <!--First response:-->
@@ -34,23 +34,25 @@
 
 <!--Dialogue after 1st response:-->
 <MudStack>
-    <MudPaper Class="pa-3" id="dialogue"><MudElement id="dialogue" HtmlTag="p">@dialogue.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue.DialogueLine </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue.DialogueLine </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3" id="dialogue"><MudElement id="dialogue" HtmlTag="p">@dialogue1.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue2.DialogueLine </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue3.DialogueLine </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue4.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue5.DialogueLine</MudElement></MudPaper>
 </MudStack>
 
 <!--Dialogue after 2nd response:-->
 <MudStack>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue6.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue7.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue8.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue9.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue10.DialogueLine</MudElement></MudPaper>
 </MudStack>
 
 <!--(after 1st response option) 2nd response:-->
+<!--use a list to store all the potential dialogues and use an if statement in the 
+button group "if dialogues = this count render the button group"-->
 <MudButtonGroup>
     <MudButton Class="button" @onclick='(() => LoadSpecificDialogue(responseOption101))'>
         Yes! Could you describe your surrounding? What's your situation?
@@ -62,20 +64,20 @@
 
 <!--Dialogue 1A:-->
 <MudStack>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue.DialogueLine </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue.DialogueLine </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue11.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue12.DialogueLine </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue13.DialogueLine </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue14.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue15.DialogueLine</MudElement></MudPaper>
 </MudStack>
 
 <!--Dialogue 1B:-->
 <MudStack>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue16.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue17.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue18.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue19.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue20.DialogueLine</MudElement></MudPaper>
 </MudStack>
 
 <!--(after 2nd response option) 2nd response:-->
@@ -92,20 +94,16 @@
 
 <!--Dialogue 2A:-->
 <MudStack>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue21.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue22.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue23.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue24.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue25.DialogueLine</MudElement></MudPaper>
 </MudStack>
 
 <!--Dialogue 2B:-->
 <MudStack>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue26.DialogueLine</MudElement></MudPaper>
 </MudStack>
 
 
@@ -201,6 +199,7 @@
      * Using the int value the dialogue retrieves a specific set of dialoguelines through the PlayerResponseOption 
      * (this is the same as the value of the button)*/
 
+    // specific player responses:
     public int responseOption1 = 1;
 
     public int responseOption2 = 2;
@@ -215,9 +214,62 @@
 
     //-------------------------------------------------------------------------------------------------------------------
 
-    Dialogue dialogue = new Dialogue();
+    //specific dialoguelines:
+    Dialogue dialogue1 = new Dialogue();
+
+    Dialogue dialogue2 = new Dialogue();
+
+    Dialogue dialogue3 = new Dialogue();
+
+    Dialogue dialogue4 = new Dialogue();
+
+    Dialogue dialogue5 = new Dialogue();
+
+    Dialogue dialogue6 = new Dialogue();
+
+    Dialogue dialogue7 = new Dialogue();
+
+    Dialogue dialogue8 = new Dialogue();
+
+    Dialogue dialogue9 = new Dialogue();
+
+    Dialogue dialogue10 = new Dialogue();
+
+    Dialogue dialogue11 = new Dialogue();
+
+    Dialogue dialogue12 = new Dialogue();
+
+    Dialogue dialogue13 = new Dialogue();
+
+    Dialogue dialogue14 = new Dialogue();
+
+    Dialogue dialogue15 = new Dialogue();
+
+    Dialogue dialogue16 = new Dialogue();
+
+    Dialogue dialogue17 = new Dialogue();
+
+    Dialogue dialogue18 = new Dialogue();
+
+    Dialogue dialogue19 = new Dialogue();
+
+    Dialogue dialogue20 = new Dialogue();
+
+    Dialogue dialogue21 = new Dialogue();
+
+    Dialogue dialogue22 = new Dialogue();
+
+    Dialogue dialogue23 = new Dialogue();
+
+    Dialogue dialogue24 = new Dialogue();
+
+    Dialogue dialogue25 = new Dialogue();
+
+    Dialogue dialogue26 = new Dialogue();
+
 
     List<Dialogue> dialogues = new List<Dialogue>();
+
     private void LoadData()
     {
         dialogues = DialogueService.GetAllDialogues();
@@ -225,12 +277,40 @@
 
     public void LoadSpecificDialogue(int responseOption)
     {
-
         if (responseOption == 1 || responseOption == 2 || responseOption == 101 || responseOption == 102 || responseOption == 201 || responseOption == 202)
         {
             //this needs to grab from the buttons
-            var characterResponse = dialogues.Where(s => s.PlayerResponseOption == responseOption).FirstOrDefault();
-            dialogue = characterResponse;
+            var characterResponse1 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 1).FirstOrDefault();
+            dialogue1 = characterResponse1;
+
+            var characterResponse2 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 2).FirstOrDefault();
+            dialogue2 = characterResponse2;
+
+            var characterResponse3 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 3).FirstOrDefault();
+            dialogue3 = characterResponse3;
+
+            var characterResponse4 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 4).FirstOrDefault();
+            dialogue4 = characterResponse4;
+        }
+        else if (responseOption == 2)
+        {
+            
+        }
+        else if (responseOption == 101)
+        {
+
+        }
+        else if (responseOption == 102)
+        {
+
+        }
+        else if (responseOption == 201)
+        {
+
+        }
+        else if (responseOption == 202)
+        {
+
         }
     }
 

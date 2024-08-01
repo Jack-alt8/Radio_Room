@@ -11,7 +11,7 @@ namespace Radio_Room.UI
 {
     public class ProgressSaver
     {
-        
+        // Collect all the dialogues in a list then iterate over that list and put that as plain text in a txt file
 
         void CopyFileInChunks(int chunkSize, string srcFilePath, string destFilePath)
         {
@@ -45,8 +45,8 @@ namespace Radio_Room.UI
                 File.Delete(destFile);
 
                 // Writing all dialogue from p tags and buttons pressed by user
-                //CopyFile = new CopyFileInChunks(60, srcFile, destFile);
-                //CopyFile();
+                //CopyFileInChunks(60, srcFile, destFile);
+                
             }
         }
 
