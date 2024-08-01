@@ -32,23 +32,16 @@
     </MudButton>
 </MudButtonGroup>
 
-<!--Dialogue after 1st response:-->
+<!--Dialogue after 1st / 2nd response:-->
 <MudStack>
-    <MudPaper Class="pa-3" id="dialogue"><MudElement id="dialogue" HtmlTag="p">@dialogue1.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue1.DialogueLine</MudElement></MudPaper>
     <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue2.DialogueLine </MudElement></MudPaper>
     <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue3.DialogueLine </MudElement></MudPaper>
     <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue4.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue5.DialogueLine</MudElement></MudPaper>
 </MudStack>
 
-<!--Dialogue after 2nd response:-->
-<MudStack>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue6.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue7.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue8.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue9.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue10.DialogueLine</MudElement></MudPaper>
-</MudStack>
+
+
 
 <!--(after 1st response option) 2nd response:-->
 <!--use a list to store all the potential dialogues and use an if statement in the 
@@ -62,23 +55,17 @@ button group "if dialogues = this count render the button group"-->
     </MudButton>
 </MudButtonGroup>
 
-<!--Dialogue 1A:-->
+<!--Dialogue 1A/B:-->
 <MudStack>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue11.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue12.DialogueLine </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue13.DialogueLine </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue14.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue15.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue5.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue6.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue7.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue8.DialogueLine</MudElement></MudPaper>
+    
+
 </MudStack>
 
-<!--Dialogue 1B:-->
-<MudStack>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue16.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue17.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue18.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue19.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue20.DialogueLine</MudElement></MudPaper>
-</MudStack>
+
 
 <!--(after 2nd response option) 2nd response:-->
 <MudButtonGroup>
@@ -92,20 +79,17 @@ button group "if dialogues = this count render the button group"-->
         Where's your squad? </MudButton>
 </MudButtonGroup>
 
-<!--Dialogue 2A:-->
+<!--Dialogue 2A/B:-->
 <MudStack>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue21.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue22.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue23.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue24.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue25.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue9.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue10.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue11.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue12.DialogueLine </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue13.DialogueLine </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue14.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue15.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue16.DialogueLine</MudElement></MudPaper>
 </MudStack>
-
-<!--Dialogue 2B:-->
-<MudStack>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue26.DialogueLine</MudElement></MudPaper>
-</MudStack>
-
 
 @code {
 
@@ -247,27 +231,6 @@ button group "if dialogues = this count render the button group"-->
 
     Dialogue dialogue16 = new Dialogue();
 
-    Dialogue dialogue17 = new Dialogue();
-
-    Dialogue dialogue18 = new Dialogue();
-
-    Dialogue dialogue19 = new Dialogue();
-
-    Dialogue dialogue20 = new Dialogue();
-
-    Dialogue dialogue21 = new Dialogue();
-
-    Dialogue dialogue22 = new Dialogue();
-
-    Dialogue dialogue23 = new Dialogue();
-
-    Dialogue dialogue24 = new Dialogue();
-
-    Dialogue dialogue25 = new Dialogue();
-
-    Dialogue dialogue26 = new Dialogue();
-
-
     List<Dialogue> dialogues = new List<Dialogue>();
 
     private void LoadData()
@@ -277,7 +240,7 @@ button group "if dialogues = this count render the button group"-->
 
     public void LoadSpecificDialogue(int responseOption)
     {
-        if (responseOption == 1 || responseOption == 2 || responseOption == 101 || responseOption == 102 || responseOption == 201 || responseOption == 202)
+        if (responseOption == 1)
         {
             //this needs to grab from the buttons
             var characterResponse1 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 1).FirstOrDefault();
@@ -294,23 +257,83 @@ button group "if dialogues = this count render the button group"-->
         }
         else if (responseOption == 2)
         {
-            
+            var characterResponse1 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 5).FirstOrDefault();
+            dialogue1 = characterResponse1;
+
+            var characterResponse2 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 6).FirstOrDefault();
+            dialogue2 = characterResponse2;
+
+            var characterResponse3 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 7).FirstOrDefault();
+            dialogue3 = characterResponse3;
+
+            var characterResponse4 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 8).FirstOrDefault();
+            dialogue4 = characterResponse4;
         }
         else if (responseOption == 101)
         {
+            var characterResponse1 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 9).FirstOrDefault();
+            dialogue5 = characterResponse1;
 
+            var characterResponse2 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 10).FirstOrDefault();
+            dialogue6 = characterResponse2;
+
+            var characterResponse3 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 11).FirstOrDefault();
+            dialogue7 = characterResponse3;
+
+            var characterResponse4 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 12).FirstOrDefault();
+            dialogue8 = characterResponse4;
         }
         else if (responseOption == 102)
         {
+            var characterResponse1 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 13).FirstOrDefault();
+            dialogue5 = characterResponse1;
 
+            var characterResponse2 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 14).FirstOrDefault();
+            dialogue6 = characterResponse2;
+
+            var characterResponse3 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 15).FirstOrDefault();
+            dialogue7 = characterResponse3;
+
+            
         }
         else if (responseOption == 201)
         {
+            var characterResponse1 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 16).FirstOrDefault();
+            dialogue9 = characterResponse1;
 
+            var characterResponse2 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 17).FirstOrDefault();
+            dialogue10 = characterResponse2;
+
+            var characterResponse3 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 18).FirstOrDefault();
+            dialogue11 = characterResponse3;
+
+            
         }
         else if (responseOption == 202)
         {
+            var characterResponse1 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 19).FirstOrDefault();
+            dialogue9 = characterResponse1;
 
+            var characterResponse2 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 20).FirstOrDefault();
+            dialogue10 = characterResponse2;
+
+            var characterResponse3 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 21).FirstOrDefault();
+            dialogue11 = characterResponse3;
+
+            var characterResponse4 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 22).FirstOrDefault();
+            dialogue12 = characterResponse4;
+
+            var characterResponse5 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 23).FirstOrDefault();
+            dialogue13 = characterResponse5;
+
+            var characterResponse6 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 24).FirstOrDefault();
+            dialogue14 = characterResponse6;
+
+            var characterResponse7 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 25).FirstOrDefault();
+            dialogue15 = characterResponse7;
+
+            var characterResponse8 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 26).FirstOrDefault();
+            dialogue16 = characterResponse8;
         }
     }
 
