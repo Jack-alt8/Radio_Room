@@ -4,6 +4,7 @@
     {
         public bool IsWorking(int candidate)
         {
+            
             if (candidate == 1)
             {
                 {

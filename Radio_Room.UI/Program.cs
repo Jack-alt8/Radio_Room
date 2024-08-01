@@ -33,10 +33,8 @@ void SaveProgress(IHost app)
 
     using (var scope = scopedFactory.CreateScope())
     {
-        int chunkSize = 50;
         var service = scope.ServiceProvider.GetService<ProgressSaver>();
-        ProgressSaver.ConvertHtml();
-        
+        ProgressSaver.StartFileWrite();
     }
 }
 
