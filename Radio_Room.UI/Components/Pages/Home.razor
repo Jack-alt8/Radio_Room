@@ -5,19 +5,32 @@
 @inject IDialogueService DialogueService
 @using Newtonsoft.Json;
 @rendermode InteractiveServer
+@using System.Linq;
 
 <p role="status">Coordinates: lat = 51.0344 & long = 2.3768 </p>
 <p role="status">Country: FR </p>
 <p role="status">Current Weather in Dunkirk: @weatherCheck </p>
 
-<MudButton Class="button">
-    See progress <MudNavLink Href="../../Save/Progress.txt" Match="NavLinkMatch.All"></MudNavLink>
+<MudButton Class="button" @onclick='(() => ProgressSaver.CopyFile(savedResponseOptions))'>
+    Save progress 
+</MudButton>
+
+<MudButton Class="button" @onclick='(() => ProgressSaver.ReadFile().ToList().ForEach(y => LoadSpecificDialogue(y)))'>
+    Load progress
 </MudButton>
 
 <!--Starting dialogue:-->
 <MudStack>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">Hello?</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">Hello? Can anyone read me?</MudElement></MudPaper>
+    <MudPaper Class="pa-3">
+        <MudElement HtmlTag="p">
+            Hello?
+        </MudElement>
+    </MudPaper>
+    <MudPaper Class="pa-3">
+        <MudElement HtmlTag="p">
+            Hello? Can anyone read me?
+        </MudElement>
+    </MudPaper>
 </MudStack>
 
 <!--First response:-->
@@ -27,17 +40,24 @@
         Who is this? 
     </MudButton>
     <MudButton Class="button" @onclick='(() => LoadSpecificDialogue(responseOption2))'>
-        This is (RTO) operator Clay Doberman from the USS Massachusetts battleship.
-        I read you. 
+        This is (RTO) operator Clay Doberman from the USS Massachusetts battleship. I read you. 
     </MudButton>
 </MudButtonGroup>
 
 <!--Dialogue after 1st / 2nd response:-->
 <MudStack>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue1.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue2.DialogueLine </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue3.DialogueLine </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue4.DialogueLine</MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">
+        @dialogue1.DialogueLine
+    </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">
+        @dialogue2.DialogueLine 
+    </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p">
+        @dialogue3.DialogueLine 
+    </MudElement></MudPaper>
+    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> 
+        @dialogue4.DialogueLine
+    </MudElement></MudPaper>
 </MudStack>
 
 
@@ -143,6 +163,8 @@ button group "if dialogues = this count render the button group"-->
 
     }
 
+    HashSet<int> savedResponseOptions = new HashSet<int>();
+
     private const string url = "https://api.openweathermap.org/data/2.5/weather?lat=51.0344&lon=2.3768&appid=";
     protected override async Task OnInitializedAsync()
     {
@@ -240,6 +262,7 @@ button group "if dialogues = this count render the button group"-->
 
     public void LoadSpecificDialogue(int responseOption)
     {
+        savedResponseOptions.Add(responseOption);
         if (responseOption == 1)
         {
             //this needs to grab from the buttons

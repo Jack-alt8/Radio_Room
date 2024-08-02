@@ -21,22 +21,8 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddDbContext<Radio_RoomDbContext>();
 builder.Services.AddSingleton<IDialogueService, DialogueService>();
-builder.Services.AddTransient<ProgressSaver>();
 
 var app = builder.Build();
-
-SaveProgress(app);
-
-void SaveProgress(IHost app)
-{
-    var scopedFactory = app.Services.GetService<IServiceScopeFactory>();
-
-    using (var scope = scopedFactory.CreateScope())
-    {
-        var service = scope.ServiceProvider.GetService<ProgressSaver>();
-        ProgressSaver.StartFileWrite();
-    }
-}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
