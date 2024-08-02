@@ -11,11 +11,11 @@
 <p role="status">Country: FR </p>
 <p role="status">Current Weather in Dunkirk: @weatherCheck </p>
 
-<MudButton Class="button" @onclick='(() => ProgressSaver.CopyFile(savedResponseOptions))'>
+<MudButton Class="button" @onclick='(async () => await ProgressSaver.CopyFileAsync(savedResponseOptions))'>
     Save progress 
 </MudButton>
 
-<MudButton Class="button" @onclick='(() => ProgressSaver.ReadFile().ToList().ForEach(y => LoadSpecificDialogue(y)))'>
+<MudButton Class="button" @onclick='(async () => (await ProgressSaver.ReadFileAsync()).ToList().ForEach(y => LoadSpecificDialogue(y)))'>
     Load progress
 </MudButton>
 
@@ -131,7 +131,7 @@ button group "if dialogues = this count render the button group"-->
 
 
     // Initializing dialogue database
-    public void SeedData()
+    public async Task SeedDataAsync()
     {
         var context = new Radio_RoomDbContext();
 
@@ -140,8 +140,8 @@ button group "if dialogues = this count render the button group"-->
             if (!context.Dialogues.Any())
             {
                 IEnumerable<Dialogue> dialogues = GetDialoguesFromExternalDatabase();
-                context.Dialogues.AddRange(dialogues);
-                var result = context.SaveChanges();
+                await context.Dialogues.AddRangeAsync(dialogues);
+                var result = await context.SaveChangesAsync();
                 Console.WriteLine($"Result: {result}");
             }
         }
@@ -170,12 +170,12 @@ button group "if dialogues = this count render the button group"-->
     {
         var context = new Radio_RoomDbContext();
         context.Dialogues.ExecuteDelete();
-        context.SaveChanges();
+        context.SaveChangesAsync();
 
-        SeedData();
+        SeedDataAsync();
 
         // get all dialogues:
-        LoadData();
+        await LoadDataAsync();
 
         // web api call
         HttpClient client = new HttpClient();
@@ -255,9 +255,9 @@ button group "if dialogues = this count render the button group"-->
 
     List<Dialogue> dialogues = new List<Dialogue>();
 
-    private void LoadData()
+    private async Task LoadDataAsync()
     {
-        dialogues = DialogueService.GetAllDialogues();
+        dialogues = await DialogueService.GetAllDialogues();
     }
 
     public void LoadSpecificDialogue(int responseOption)

@@ -11,16 +11,16 @@ namespace Radio_Room.UI
     {
         static Environment.SpecialFolder folder = Environment.SpecialFolder.Desktop;
         static string path = Environment.GetFolderPath(folder);
-        public static void CopyFile(IEnumerable<int> savedResponseOptions)
+        public static async Task CopyFileAsync(IEnumerable<int> savedResponseOptions)
         {
             
-            File.WriteAllLines(path + "\\Progress.txt", savedResponseOptions.Select(z => z.ToString()));
+            await File.WriteAllLinesAsync(path + "\\Progress.txt", savedResponseOptions.Select(z => z.ToString()));
             
         }
 
-        public static IEnumerable<int> ReadFile() 
+        public static async Task<IEnumerable<int>> ReadFileAsync() 
         {
-            return File.ReadAllLines(path + "\\Progress.txt").Select(z => Int32.Parse(z));
+            return (await File.ReadAllLinesAsync(path + "\\Progress.txt")).Select(z => Int32.Parse(z));
         }
 
     }

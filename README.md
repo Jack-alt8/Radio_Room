@@ -9,3 +9,14 @@ Radio_Room is an interactive World War 2 text-based web game demo. Help  Private
 * Add comments to your code explaining how you are using at least 2 of the SOLID principles. Through the use of SOLID, make sure the code is extended in a sustainable, manageable and efficient way.
 
 * Write information/data to a text file. The player’s choices will be logged and written to a text file for the player to review and be able to try something different next time they play.
+
+
+#### How to Run:
+1. Git pull the repository 
+
+2. Make sure to put the api key in to Home.razor on the constant "url" after "appid="
+
+3. In the file, run "dotnet ef database update" (to download the database) in the vs console
+
+4. Finally, build the project and enjoy!
+

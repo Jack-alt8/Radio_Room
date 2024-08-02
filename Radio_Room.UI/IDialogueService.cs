@@ -5,16 +5,16 @@ namespace Radio_Room.UI
 {
     public interface IDialogueService
     {
-        List<Dialogue> GetAllDialogues();
+        Task<List<Dialogue>> GetAllDialogues();
     }
 
     public class DialogueService : IDialogueService
     {
-        public List<Dialogue> GetAllDialogues()
+        public async Task<List<Dialogue>> GetAllDialogues()
         {
             using (var context = new Radio_RoomDbContext())
             {
-                return context.Dialogues.ToList();
+                return await context.Dialogues.ToListAsync();
             }
         }
 
