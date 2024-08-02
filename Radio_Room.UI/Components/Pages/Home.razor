@@ -7,6 +7,8 @@
 @rendermode InteractiveServer
 @using System.Linq;
 
+<!--add disabled to buttons so they can't be clicked on again-->
+
 <p role="status">Coordinates: lat = 51.0344 & long = 2.3768 </p>
 <p role="status">Country: FR </p>
 <p role="status">Current Weather in Dunkirk: @weatherCheck </p>
@@ -155,7 +157,7 @@ button group "if dialogues = this count render the button group"-->
 
     private IEnumerable<Dialogue> GetDialoguesFromExternalDatabase()
     {
-        string pathToDialogueJson = "C:\\Users\\Tech Louisville\\OneDrive\\Documents\\CSProjects\\Radio_Room\\Radio_Room.UI\\Dialogues.json";
+        string pathToDialogueJson = "Dialogues.json";
         string jsonString = File.ReadAllText(pathToDialogueJson);
         var dialogues = JsonConvert.DeserializeObject<DialogsList>(jsonString);
 
@@ -170,9 +172,9 @@ button group "if dialogues = this count render the button group"-->
     {
         var context = new Radio_RoomDbContext();
         context.Dialogues.ExecuteDelete();
-        context.SaveChangesAsync();
+        await context.SaveChangesAsync();
 
-        SeedDataAsync();
+        await SeedDataAsync();
 
         // get all dialogues:
         await LoadDataAsync();
