@@ -11,7 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="HtmlAgilityPack" Version="1.11.61" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.7">
@@ -20,10 +19,6 @@
     </PackageReference>
     <PackageReference Include="MudBlazor" Version="7.0.0" />
     <PackageReference Include="RestSharp" Version="111.3.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Save\" />
   </ItemGroup>
 
 </Project>

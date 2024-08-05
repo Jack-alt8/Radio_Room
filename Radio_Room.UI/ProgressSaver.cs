@@ -13,7 +13,7 @@ namespace Radio_Room.UI
         static string path = Environment.GetFolderPath(folder);
         public static async Task CopyFileAsync(IEnumerable<int> savedResponseOptions)
         {
-            
+            File.Delete(path + "\\Progress.txt");
             await File.WriteAllLinesAsync(path + "\\Progress.txt", savedResponseOptions.Select(z => z.ToString()));
             
         }
