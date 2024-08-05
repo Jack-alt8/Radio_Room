@@ -36,11 +36,11 @@
 
 <!--First response:-->
 <MudButtonGroup>
-    <MudButton Class="button" @onclick='(() => LoadSpecificDialogue(responseOption1))'>
+    <MudButton Class="button" Disabled=@disable1stOption @onclick='(() => LoadSpecificDialogue(responseOption1))'>
         This is US (RTO) operator Clay Doberman from the USS Massachusetts battleship.
         Who is this? 
     </MudButton>
-    <MudButton Class="button" @onclick='(() => LoadSpecificDialogue(responseOption2))'>
+    <MudButton Class="button" Disabled=@disable2ndOption @onclick='(() => LoadSpecificDialogue(responseOption2))'>
         This is (RTO) operator Clay Doberman from the USS Massachusetts battleship. I read you. 
     </MudButton>
 </MudButtonGroup>
@@ -65,43 +65,41 @@
 
 
 <!--(after 1st response option) 2nd response:-->
-<!--use a list to store all the potential dialogues and use an if statement in the 
-button group "if dialogues = this count render the button group"-->
-<MudButtonGroup>
-    <MudButton Class="button" @onclick='(() => LoadSpecificDialogue(responseOption101))'>
+<MudButtonGroup hidden="@Hide1stOptionButtonGroup">
+    <MudButton Class="button" Disabled=@disable101Option @onclick='(() => LoadSpecificDialogue(responseOption101))'>
         Yes! Could you describe your surrounding? What's your situation?
     </MudButton>
-    <MudButton Class="button" @onclick='(() => LoadSpecificDialogue(responseOption102))'>
+    <MudButton Class="button" Disabled=@disable102Option @onclick='(() => LoadSpecificDialogue(responseOption102))'>
         That must have been terrible! Did you lose your squad?
     </MudButton>
 </MudButtonGroup>
 
 <!--Dialogue 1A/B:-->
-<MudStack>
+<MudStack hidden="@Hide1stOptionButtonGroup">
     <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue5.DialogueLine</MudElement></MudPaper>
     <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue6.DialogueLine</MudElement></MudPaper>
     <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue7.DialogueLine</MudElement></MudPaper>
     <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue8.DialogueLine</MudElement></MudPaper>
-    
-
 </MudStack>
 
-
+<!--use a list to store all the potential dialogues and use an if statement in the
+button group "if dialogues = this count render the button group"-->
 
 <!--(after 2nd response option) 2nd response:-->
-<MudButtonGroup>
-    <MudButton Class="button" @onclick='(() => LoadSpecificDialogue(responseOption201))'>
+<MudButtonGroup hidden="@Hide2ndOptionButtonGroup">
+    <!--@(if (responseOption2 == 2) {return false;}) - what is wrong with this code? -->
+    <MudButton Class="button" Disabled=@disable201Option @onclick='(() => LoadSpecificDialogue(responseOption201))'>
         I'm going to need more proof of identity.
         Could you give some more information on your squad commander, 
         your squad number, and anything else related to identifying you, 
         so I can check? </MudButton>
-    <MudButton Class="button" @onclick='(() => LoadSpecificDialogue(responseOption202))'>
+    <MudButton Class="button" Disabled=@disable202Option @onclick='(() => LoadSpecificDialogue(responseOption202))'>
         Why weren't you able to escape with the others?
         Where's your squad? </MudButton>
 </MudButtonGroup>
 
 <!--Dialogue 2A/B:-->
-<MudStack>
+<MudStack hidden="@Hide2ndOptionButtonGroup">
     <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue9.DialogueLine</MudElement></MudPaper>
     <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue10.DialogueLine</MudElement></MudPaper>
     <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue11.DialogueLine</MudElement></MudPaper>
@@ -261,6 +259,17 @@ button group "if dialogues = this count render the button group"-->
         dialogues = await DialogueService.GetAllDialogues();
     }
 
+    public bool disable1stOption { get; set; } = false;
+    public bool disable2ndOption { get; set; } = false;
+    public bool disable101Option { get; set; } = false;
+    public bool disable102Option { get; set; } = false;
+    public bool disable201Option { get; set; } = false;
+    public bool disable202Option { get; set; } = false;
+
+
+    public bool Hide1stOptionButtonGroup { get; set; } = true;
+    public bool Hide2ndOptionButtonGroup { get; set; } = true;
+
     public void LoadSpecificDialogue(int responseOption)
     {
         savedResponseOptions.Add(responseOption);
@@ -278,6 +287,10 @@ button group "if dialogues = this count render the button group"-->
 
             var characterResponse4 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 4).FirstOrDefault();
             dialogue4 = characterResponse4;
+
+            Hide1stOptionButtonGroup = false;
+
+            disable2ndOption = true;
         }
         else if (responseOption == 2)
         {
@@ -292,6 +305,10 @@ button group "if dialogues = this count render the button group"-->
 
             var characterResponse4 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 8).FirstOrDefault();
             dialogue4 = characterResponse4;
+
+            Hide2ndOptionButtonGroup = false;
+
+            disable1stOption = true;
         }
         else if (responseOption == 101)
         {
@@ -306,6 +323,8 @@ button group "if dialogues = this count render the button group"-->
 
             var characterResponse4 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 12).FirstOrDefault();
             dialogue8 = characterResponse4;
+
+            disable102Option = true;
         }
         else if (responseOption == 102)
         {
@@ -318,7 +337,7 @@ button group "if dialogues = this count render the button group"-->
             var characterResponse3 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 15).FirstOrDefault();
             dialogue7 = characterResponse3;
 
-            
+            disable101Option = true;
         }
         else if (responseOption == 201)
         {
@@ -331,7 +350,7 @@ button group "if dialogues = this count render the button group"-->
             var characterResponse3 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 18).FirstOrDefault();
             dialogue11 = characterResponse3;
 
-            
+            disable202Option = true;
         }
         else if (responseOption == 202)
         {
@@ -358,6 +377,8 @@ button group "if dialogues = this count render the button group"-->
 
             var characterResponse8 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 26).FirstOrDefault();
             dialogue16 = characterResponse8;
+
+            disable201Option = true;
         }
     }
 
