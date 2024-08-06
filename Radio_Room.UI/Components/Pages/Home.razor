@@ -6,108 +6,119 @@
 @rendermode InteractiveServer
 @using System.Linq;
 
-<!--add disabled to buttons so they can't be clicked on again-->
+<MudStack class="pa-3" Justify="Justify.FlexEnd" Row="true">
+    <MudButton Class="button" Color="Color.Success" Variant="Variant.Filled" @onclick='(async () => await ProgressSaver.CopyFileAsync(savedResponseOptions))'>
+            <MudText Color="Color.Info" Typo="Typo.h6">Save</MudText>
+    </MudButton>
+    <MudButton Class="button" Color="Color.Success" Variant="Variant.Filled" @onclick='(async () => (await ProgressSaver.ReadFileAsync()).ToList().ForEach(y => LoadSpecificDialogue(y)))'>
+        <MudText Color="Color.Info" Typo="Typo.h6">Load</MudText>
+    </MudButton>
+</MudStack>
 
-<p role="status">Coordinates: lat = 51.0344 & long = 2.3768 </p>
-<p role="status">Country: FR </p>
-<p role="status">Current Weather in Dunkirk: @weatherCheck </p>
-
-<MudButton Class="button" @onclick='(async () => await ProgressSaver.CopyFileAsync(savedResponseOptions))'>
-    Save progress 
-</MudButton>
-
-<MudButton Class="button" @onclick='(async () => (await ProgressSaver.ReadFileAsync()).ToList().ForEach(y => LoadSpecificDialogue(y)))'>
-    Load progress
-</MudButton>
+<MudStack Class="pa-5">
+    <MudText Color="Color.Warning" Typo="Typo.subtitle1">Coordinates: lat = 51.0344 & long = 2.3768</MudText>
+    <MudText Color="Color.Warning" Typo="Typo.subtitle1">Country: FR</MudText>
+    <MudText Color="Color.Warning" Typo="Typo.subtitle1">Current Weather in Dunkirk: @weatherCheck </MudText>
+</MudStack>
 
 <!--Starting dialogue:-->
-<MudStack>
-    <MudPaper Class="pa-3">
-        <MudElement HtmlTag="p">
+<MudStack Class="pa-3">
+        <MudText>
             Hello?
-        </MudElement>
-    </MudPaper>
-    <MudPaper Class="pa-3">
-        <MudElement HtmlTag="p">
+        </MudText>
+        <MudText>
             Hello? Can anyone read me?
-        </MudElement>
-    </MudPaper>
+        </MudText>
 </MudStack>
 
 <!--First response:-->
-<MudButtonGroup>
-    <MudButton Class="button" Disabled=@disable1stOption @onclick='(() => LoadSpecificDialogue(responseOption1))'>
+<MudStack class="pa-3" Justify="Justify.Center" Row="true">
+<MudButtonGroup Color="Color.Secondary" Variant="Variant.Outlined" OverrideStyles="@override1stResponsesStyles">
+    <MudButton Class="button" Color="Color.Tertiary" Variant="Variant.Filled" Disabled=@disable1stOption @onclick='(() => LoadSpecificDialogue(responseOption1))'>
+        <MudText Color="Color.Primary">
         This is US (RTO) operator Clay Doberman from the USS Massachusetts battleship.
         Who is this? 
+        </MudText>
     </MudButton>
-    <MudButton Class="button" Disabled=@disable2ndOption @onclick='(() => LoadSpecificDialogue(responseOption2))'>
+    <MudButton Class="button" Color="Color.Tertiary" Variant="Variant.Filled" Disabled=@disable2ndOption @onclick='(() => LoadSpecificDialogue(responseOption2))'>
+        <MudText Color="Color.Primary">
         This is (RTO) operator Clay Doberman from the USS Massachusetts battleship. I read you. 
+        </MudText>
     </MudButton>
 </MudButtonGroup>
+</MudStack>
 
 <!--Dialogue after 1st / 2nd response:-->
-<MudStack>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">
+<MudStack Class="pa-3">
+    <MudText>
         @dialogue1.DialogueLine
-    </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">
+    </MudText>
+    <MudText>
         @dialogue2.DialogueLine 
-    </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">
+    </MudText>
+    <MudText>
         @dialogue3.DialogueLine 
-    </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> 
+    </MudText>
+    <MudText> 
         @dialogue4.DialogueLine
-    </MudElement></MudPaper>
+    </MudText>
 </MudStack>
 
 
 
 
 <!--(after 1st response option) 2nd response:-->
-<MudButtonGroup hidden="@Hide1stOptionButtonGroup">
-    <MudButton Class="button" Disabled=@disable101Option @onclick='(() => LoadSpecificDialogue(responseOption101))'>
-        Yes! Could you describe your surrounding? What's your situation?
+<MudStack class="pa-3" Justify="Justify.Center" Row="true">
+<MudButtonGroup Justify="Justify.Center" Color="Color.Secondary" Variant="Variant.Outlined" OverrideStyles="@override2ndResponsesStyles" hidden="@Hide1stOptionButtonGroup">
+    <MudButton Class="button" Color="Color.Tertiary" Variant="Variant.Filled" Disabled=@disable101Option @onclick='(() => LoadSpecificDialogue(responseOption101))'>
+        <MudText Color="Color.Primary">
+        Yes! Could you describe your surrounding? What's your situation?</MudText>
     </MudButton>
-    <MudButton Class="button" Disabled=@disable102Option @onclick='(() => LoadSpecificDialogue(responseOption102))'>
-        That must have been terrible! Did you lose your squad?
+    <MudButton Class="button" Color="Color.Tertiary" Variant="Variant.Filled" Disabled=@disable102Option @onclick='(() => LoadSpecificDialogue(responseOption102))'>
+        <MudText Color="Color.Primary">
+        That must have been terrible! Did you lose your squad?</MudText>
     </MudButton>
 </MudButtonGroup>
+</MudStack>
 
 <!--Dialogue 1A/B:-->
-<MudStack hidden="@Hide1stOptionButtonGroup">
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue5.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue6.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue7.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue8.DialogueLine</MudElement></MudPaper>
+<MudStack class="pa-3" hidden="@Hide1stOptionButtonGroup">
+    <MudText> @dialogue5.DialogueLine</MudText>
+    <MudText> @dialogue6.DialogueLine</MudText>
+    <MudText> @dialogue7.DialogueLine</MudText>
+    <MudText> @dialogue8.DialogueLine</MudText>
 </MudStack>
 
 <!--use a list to store all the potential dialogues and use an if statement in the
 button group "if dialogues = this count render the button group"-->
 
 <!--(after 2nd response option) 2nd response:-->
-<MudButtonGroup hidden="@Hide2ndOptionButtonGroup">
+<MudStack class="pa-3" Justify="Justify.Center" Row="true">
+<MudButtonGroup Color="Color.Secondary" Variant="Variant.Outlined" OverrideStyles="@override2ndResponsesStyles" hidden="@Hide2ndOptionButtonGroup">
     <!--@(if (responseOption2 == 2) {return false;}) - what is wrong with this code? -->
-    <MudButton Class="button" Disabled=@disable201Option @onclick='(() => LoadSpecificDialogue(responseOption201))'>
+    <MudButton Class="button" Color="Color.Tertiary" Variant="Variant.Filled" Disabled=@disable201Option @onclick='(() => LoadSpecificDialogue(responseOption201))'>
+        <MudText Color="Color.Primary">
         I'm going to need more proof of identity.
         Could you give some more information on your squad commander, 
         your squad number, and anything else related to identifying you, 
-        so I can check? </MudButton>
-    <MudButton Class="button" Disabled=@disable202Option @onclick='(() => LoadSpecificDialogue(responseOption202))'>
+        so I can check? </MudText></MudButton>
+    <MudButton Class="button" Color="Color.Tertiary" Variant="Variant.Filled" Disabled=@disable202Option @onclick='(() => LoadSpecificDialogue(responseOption202))'>
+        <MudText Color="Color.Primary">
         Why weren't you able to escape with the others?
-        Where's your squad? </MudButton>
+        Where's your squad? </MudText></MudButton>
 </MudButtonGroup>
+</MudStack>
 
 <!--Dialogue 2A/B:-->
-<MudStack hidden="@Hide2ndOptionButtonGroup">
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue9.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue10.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue11.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue12.DialogueLine </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p">@dialogue13.DialogueLine </MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue14.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue15.DialogueLine</MudElement></MudPaper>
-    <MudPaper Class="pa-3"><MudElement HtmlTag="p"> @dialogue16.DialogueLine</MudElement></MudPaper>
+<MudStack class="pa-3" hidden="@Hide2ndOptionButtonGroup">
+    <MudText> @dialogue9.DialogueLine</MudText>
+    <MudText> @dialogue10.DialogueLine</MudText>
+    <MudText> @dialogue11.DialogueLine</MudText>
+    <MudText>@dialogue12.DialogueLine </MudText>
+    <MudText>@dialogue13.DialogueLine </MudText>
+    <MudText> @dialogue14.DialogueLine</MudText>
+    <MudText> @dialogue15.DialogueLine</MudText>
+    <MudText> @dialogue16.DialogueLine</MudText>
 </MudStack>
 
 @code {
@@ -197,12 +208,6 @@ button group "if dialogues = this count render the button group"-->
     }
 
     /*Dialogue code: */
-    /* when the player presses a button -> 
-     * a overarching function will be triggered 
-     * - the int will turn into the option picked (a value is assigned per button 1 or 2 on the first option), 
-     * - the database dialogue retrieval method is called
-     * Using the int value the dialogue retrieves a specific set of dialoguelines through the PlayerResponseOption 
-     * (this is the same as the value of the button)*/
 
     // specific player responses:
     public int responseOption1 = 1;
@@ -270,8 +275,12 @@ button group "if dialogues = this count render the button group"-->
     public bool Hide1stOptionButtonGroup { get; set; } = true;
     public bool Hide2ndOptionButtonGroup { get; set; } = true;
 
+    public bool override1stResponsesStyles { get; set; } = true;
+    public bool override2ndResponsesStyles { get; set; } = true;
+
     public void LoadSpecificDialogue(int responseOption)
     {
+
         savedResponseOptions.Add(responseOption);
         if (responseOption == 1)
         {
@@ -287,6 +296,8 @@ button group "if dialogues = this count render the button group"-->
 
             var characterResponse4 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 4).FirstOrDefault();
             dialogue4 = characterResponse4;
+
+            override1stResponsesStyles = false;
 
             Hide1stOptionButtonGroup = false;
 
@@ -306,6 +317,8 @@ button group "if dialogues = this count render the button group"-->
             var characterResponse4 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 8).FirstOrDefault();
             dialogue4 = characterResponse4;
 
+            override1stResponsesStyles = false;
+
             Hide2ndOptionButtonGroup = false;
 
             disable1stOption = true;
@@ -324,6 +337,8 @@ button group "if dialogues = this count render the button group"-->
             var characterResponse4 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 12).FirstOrDefault();
             dialogue8 = characterResponse4;
 
+            override2ndResponsesStyles = false;
+
             disable102Option = true;
         }
         else if (responseOption == 102)
@@ -337,6 +352,8 @@ button group "if dialogues = this count render the button group"-->
             var characterResponse3 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 15).FirstOrDefault();
             dialogue7 = characterResponse3;
 
+            override2ndResponsesStyles = false;
+
             disable101Option = true;
         }
         else if (responseOption == 201)
@@ -349,6 +366,8 @@ button group "if dialogues = this count render the button group"-->
 
             var characterResponse3 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 18).FirstOrDefault();
             dialogue11 = characterResponse3;
+
+            override2ndResponsesStyles = false;
 
             disable202Option = true;
         }
@@ -377,6 +396,8 @@ button group "if dialogues = this count render the button group"-->
 
             var characterResponse8 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 26).FirstOrDefault();
             dialogue16 = characterResponse8;
+
+            override2ndResponsesStyles = false;
 
             disable201Option = true;
         }

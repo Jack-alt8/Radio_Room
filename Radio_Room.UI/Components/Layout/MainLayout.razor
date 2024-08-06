@@ -1,16 +1,18 @@
 ﻿@inherits LayoutComponentBase
 
-<MudThemeProvider />
+<MudThemeProvider @ref="@mudThemeProvider" Theme="currentTheme" />
 <MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
 <MudLayout>
-    <MudAppBar Elevation="1">
+    <MudAppBar Elevation="1" Color="Color.Inherit">
         <MudText Typo="Typo.h5" Class="ml-3">Radio_Room</MudText>
     </MudAppBar>
     <MudMainContent>
-        @Body
+        <MudContainer MaxWidth="MaxWidth.ExtraLarge">
+            @Body
+        </MudContainer>
     </MudMainContent>
 </MudLayout>
 
@@ -19,3 +21,34 @@
     <a href="/Error" class="reload">Reload</a>
     <a class="dismiss">🗙</a>
 </div>
+
+@code {
+    private MudThemeProvider mudThemeProvider;
+
+    private readonly MudTheme currentTheme = new()
+    {
+        PaletteLight = new PaletteLight
+        {
+                Primary = "FFA901",
+                Secondary = "751601",
+                Tertiary = "E82C02",
+                Info = "FFFFFF",
+                Success = "034500",
+                Warning = "89B300",
+                //Error = "FF0000",
+                AppbarBackground = "034500",
+                TextPrimary = "B4EB00",
+                //TextSecondary = "B4EB00",
+                // more color properties
+                Background = "#000000",
+                //AppbarText = "F5f5dc",
+                ActionDefault = "E82C02",
+                ActionDisabled = "2B0601",
+                ActionDisabledBackground = "2B0601",
+                HoverOpacity = 10
+                
+                
+                
+        }
+    };
+}
