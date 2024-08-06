@@ -6,6 +6,7 @@
 @rendermode InteractiveServer
 @using System.Linq;
 
+<!--Save or Load-->
 <MudStack class="pa-3" Justify="Justify.FlexEnd" Row="true">
     <MudButton Class="button" Color="Color.Success" Variant="Variant.Filled" @onclick='(async () => await ProgressSaver.CopyFileAsync(savedResponseOptions))'>
             <MudText Color="Color.Info" Typo="Typo.h6">Save</MudText>
@@ -15,10 +16,11 @@
     </MudButton>
 </MudStack>
 
+<!--Weather api implementation-->
 <MudStack Class="pa-5">
     <MudText Color="Color.Warning" Typo="Typo.subtitle1">Coordinates: lat = 51.0344 & long = 2.3768</MudText>
     <MudText Color="Color.Warning" Typo="Typo.subtitle1">Country: FR</MudText>
-    <MudText Color="Color.Warning" Typo="Typo.subtitle1">Current Weather in Dunkirk: @weatherCheck </MudText>
+    <MudText Color="Color.Warning" Typo="Typo.subtitle1">Current Weather in Dunkirk: @weatherCheck </MudText> 
 </MudStack>
 
 <!--Starting dialogue:-->
@@ -31,7 +33,7 @@
         </MudText>
 </MudStack>
 
-<!--First response:-->
+<!--1st response options:-->
 <MudStack class="pa-3" Justify="Justify.Center" Row="true">
 <MudButtonGroup Color="Color.Secondary" Variant="Variant.Outlined" OverrideStyles="@override1stResponsesStyles">
     <MudButton Class="button" Color="Color.Tertiary" Variant="Variant.Filled" Disabled=@disable1stOption @onclick='(() => LoadSpecificDialogue(responseOption1))'>
@@ -48,7 +50,7 @@
 </MudButtonGroup>
 </MudStack>
 
-<!--Dialogue after 1st / 2nd response:-->
+<!--Dialogue after 1st or 2nd response:-->
 <MudStack Class="pa-3">
     <MudText>
         @dialogue1.DialogueLine
@@ -64,10 +66,7 @@
     </MudText>
 </MudStack>
 
-
-
-
-<!--(after 1st response option) 2nd response:-->
+<!--(after 1st response option) 2nd response options:-->
 <MudStack class="pa-3" Justify="Justify.Center" Row="true">
 <MudButtonGroup Justify="Justify.Center" Color="Color.Secondary" Variant="Variant.Outlined" OverrideStyles="@override2ndResponsesStyles" hidden="@Hide1stOptionButtonGroup">
     <MudButton Class="button" Color="Color.Tertiary" Variant="Variant.Filled" Disabled=@disable101Option @onclick='(() => LoadSpecificDialogue(responseOption101))'>
@@ -81,7 +80,7 @@
 </MudButtonGroup>
 </MudStack>
 
-<!--Dialogue 1A/B:-->
+<!--(after 1st response option) Dialogue from response 1 or 2:-->
 <MudStack class="pa-3" hidden="@Hide1stOptionButtonGroup">
     <MudText> @dialogue5.DialogueLine</MudText>
     <MudText> @dialogue6.DialogueLine</MudText>
@@ -89,13 +88,9 @@
     <MudText> @dialogue8.DialogueLine</MudText>
 </MudStack>
 
-<!--use a list to store all the potential dialogues and use an if statement in the
-button group "if dialogues = this count render the button group"-->
-
-<!--(after 2nd response option) 2nd response:-->
+<!--(after 2nd response option) 2nd response options:-->
 <MudStack class="pa-3" Justify="Justify.Center" Row="true">
 <MudButtonGroup Color="Color.Secondary" Variant="Variant.Outlined" OverrideStyles="@override2ndResponsesStyles" hidden="@Hide2ndOptionButtonGroup">
-    <!--@(if (responseOption2 == 2) {return false;}) - what is wrong with this code? -->
     <MudButton Class="button" Color="Color.Tertiary" Variant="Variant.Filled" Disabled=@disable201Option @onclick='(() => LoadSpecificDialogue(responseOption201))'>
         <MudText Color="Color.Primary">
         I'm going to need more proof of identity.
@@ -109,7 +104,7 @@ button group "if dialogues = this count render the button group"-->
 </MudButtonGroup>
 </MudStack>
 
-<!--Dialogue 2A/B:-->
+<!--(after 2nd response option) Dialogue from response 1 or 2-->
 <MudStack class="pa-3" hidden="@Hide2ndOptionButtonGroup">
     <MudText> @dialogue9.DialogueLine</MudText>
     <MudText> @dialogue10.DialogueLine</MudText>
@@ -121,9 +116,15 @@ button group "if dialogues = this count render the button group"-->
     <MudText> @dialogue16.DialogueLine</MudText>
 </MudStack>
 
+<MudText class="pa-3" Color="Color.Info">(This is only a demo, click on a response, save, reload the page to start over, and load to go back to previous save)</MudText>
+
 @code {
 
-    //OpenWeather API call and data retrieval:
+    /*
+     * =====================================================================================================================
+     * OpenWeather API call and data retrieval:
+     * =====================================================================================================================
+     * */
     public string weatherCheck = "";
 
     public class DataObject
@@ -139,8 +140,18 @@ button group "if dialogues = this count render the button group"-->
         public string icon { get; set; }
     }
 
+    /*
+     * ==========================================================================================================
+     * >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> | Add api key here (after appid=) \/ |
+     * ==========================================================================================================
+     */
+    private const string url = "https://api.openweathermap.org/data/2.5/weather?lat=51.0344&lon=2.3768&appid=";
 
-    // Initializing dialogue database
+    /*
+     * ==========================================================================================================
+     * Initializing Dialogue Database
+     * ==========================================================================================================
+     * */
     public async Task SeedDataAsync()
     {
         var context = new Radio_RoomDbContext();
@@ -175,13 +186,14 @@ button group "if dialogues = this count render the button group"-->
 
     HashSet<int> savedResponseOptions = new HashSet<int>();
 
-    private const string url = "https://api.openweathermap.org/data/2.5/weather?lat=51.0344&lon=2.3768&appid=";
     protected override async Task OnInitializedAsync()
     {
+        // clear all previous dialogue data to start new
         var context = new Radio_RoomDbContext();
         context.Dialogues.ExecuteDelete();
         await context.SaveChangesAsync();
 
+        // build database
         await SeedDataAsync();
 
         // get all dialogues:
@@ -191,11 +203,11 @@ button group "if dialogues = this count render the button group"-->
         HttpClient client = new HttpClient();
         client.BaseAddress = new Uri(url);
 
-        // List data response.
+        // List weather data response.
         HttpResponseMessage response = client.GetAsync(url).Result;
         if (response.IsSuccessStatusCode)
         {
-            // Parse the response body.
+            // Parse the weather data response body.
             var dataObjects = response.Content.ReadAsAsync<DataObject>().Result;
 
             weatherCheck = dataObjects.weather[0].description;
@@ -207,9 +219,13 @@ button group "if dialogues = this count render the button group"-->
         client.Dispose();
     }
 
-    /*Dialogue code: */
+    /*
+     * ===========================================================================================================================
+     * Dialogue functionality code: 
+     * ===========================================================================================================================
+     */
 
-    // specific player responses:
+    // possible player responses:
     public int responseOption1 = 1;
 
     public int responseOption2 = 2;
@@ -221,8 +237,6 @@ button group "if dialogues = this count render the button group"-->
     public int responseOption201 = 201;
 
     public int responseOption202 = 202;
-
-    //-------------------------------------------------------------------------------------------------------------------
 
     //specific dialoguelines:
     Dialogue dialogue1 = new Dialogue();
@@ -264,6 +278,7 @@ button group "if dialogues = this count render the button group"-->
         dialogues = await DialogueService.GetAllDialogues();
     }
 
+    // possible disabled responses per each player response choice 
     public bool disable1stOption { get; set; } = false;
     public bool disable2ndOption { get; set; } = false;
     public bool disable101Option { get; set; } = false;
@@ -271,20 +286,19 @@ button group "if dialogues = this count render the button group"-->
     public bool disable201Option { get; set; } = false;
     public bool disable202Option { get; set; } = false;
 
-
+    // hidden attribute dependant on which player response choice
     public bool Hide1stOptionButtonGroup { get; set; } = true;
     public bool Hide2ndOptionButtonGroup { get; set; } = true;
 
+    // styles for when a response is clicked 
     public bool override1stResponsesStyles { get; set; } = true;
     public bool override2ndResponsesStyles { get; set; } = true;
 
     public void LoadSpecificDialogue(int responseOption)
     {
-
         savedResponseOptions.Add(responseOption);
         if (responseOption == 1)
         {
-            //this needs to grab from the buttons
             var characterResponse1 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 1).FirstOrDefault();
             dialogue1 = characterResponse1;
 

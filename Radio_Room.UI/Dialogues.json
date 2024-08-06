@@ -64,7 +64,7 @@
     },
     {
 
-      "DialogueLine": "What should I do now? (This is the end of the demo, reload the page to try another path!)",
+      "DialogueLine": "What should I do now?",
       "PlayerResponseOption": 101,
       "DialogueId": 12
     },
@@ -82,7 +82,7 @@
     },
     {
 
-      "DialogueLine": "What should I do now? (This is the end of the demo, reload the page to try another path!)",
+      "DialogueLine": "What should I do now?",
       "PlayerResponseOption": 102,
       "DialogueId": 15
     },
@@ -100,7 +100,7 @@
     },
     {
 
-      "DialogueLine": "I can't remember every minute detail when I've been focused on getting out of here! I need help! How can I get out of here? (This is the end of the demo, reload the page to try another path!)",
+      "DialogueLine": "I can't remember every minute detail when I've been focused on getting out of here! I need help! How can I get out of here?",
       "PlayerResponseOption": 201,
       "DialogueId": 18
     },
@@ -146,7 +146,7 @@
     },
     {
 
-      "DialogueLine": "What should I do? (This is the end of the demo, reload the page to try another path!)",
+      "DialogueLine": "What should I do?",
       "PlayerResponseOption": 202,
       "DialogueId": 26
     }

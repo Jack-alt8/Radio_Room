@@ -15,7 +15,7 @@ Radio_Room is an interactive World War 2 text-based web game demo. Help  Private
 #### How to Run:
 1. Git pull the repository.
 
-2. Make sure to put the api key in to Radio_Room.UI/Components/Pages/Home.razor on the constant "url" on line 167 after "appid=".
+2. Make sure to put the api key in to the file Radio_Room.UI/Components/Pages/Home.razor on the "string url" on line 148 after "appid=".
 
 3. In the file, run "dotnet ef database update" (to download the database) in the vs console.
 

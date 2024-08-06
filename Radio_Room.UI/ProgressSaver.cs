@@ -3,10 +3,7 @@ using System.IO;
 
 namespace Radio_Room.UI
 {
-    // Collect all the dialogues in a list
-    // iterate over that list
-    // put that as plain text in a txt file
-
+    // functionality for save and load buttons
     public class ProgressSaver
     {
         static Environment.SpecialFolder folder = Environment.SpecialFolder.Desktop;
