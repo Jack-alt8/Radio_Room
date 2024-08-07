@@ -1,12 +1,12 @@
 {
   "Dialogues": [
     {
-      "DialogueLine": "This is British Armed Forces Private Ben Matthew. Can't tell you how much of a relief it is to hear from someone on the outside!",
+      "DialogueLine": "This is British Armed Forces Private Ben Matthew. Can't tell you how much of a relief it is to hear from someone!",
       "PlayerResponseOption": 1,
       "DialogueId": 1
     },
     {
-      "DialogueLine": "Listen I'm stuck in Dunkirk, FR -we're pinned against the Nazis and the ocean with the French and no present way out.",
+      "DialogueLine": "Listen I'm stuck in Dunkirk, FR - pinned against the Nazis and the ocean with no present way out.",
       "PlayerResponseOption": 1,
       "DialogueId": 2
     },
@@ -28,7 +28,7 @@
     },
     {
 
-      "DialogueLine": "Listen I'm stuck in Dunkirk, FR - we're pinned against the Nazis and the ocean with the French and no present way out.",
+      "DialogueLine": "Listen I'm stuck in Dunkirk, FR - we're pinned against the Nazis and the ocean with no present way out.",
       "PlayerResponseOption": 2,
       "DialogueId": 6
     },
@@ -46,19 +46,19 @@
     },
     {
 
-      "DialogueLine": "I am in a tall brick building, hiding out in a kitchen of what was some sort of restaurant or bakery.",
+      "DialogueLine": "I am in a tall brick building, hiding out in a kitchen of some sort of restaurant or bakery.",
       "PlayerResponseOption": 101,
       "DialogueId": 9
     },
     {
 
-      "DialogueLine": "I ran 5 blocks from the shore after I realized I wouldn't be able to get on the escape boats.",
+      "DialogueLine": "I ran 5 blocks from the shore after I realized I wouldn't be able to get to the escape boats.",
       "PlayerResponseOption": 101,
       "DialogueId": 10
     },
     {
 
-      "DialogueLine": "And that's whe my squad got annihilated by German troops hiding out in the buildings.",
+      "DialogueLine": "And that's when my squad got annihilated by German troops hiding out in the buildings.",
       "PlayerResponseOption": 101,
       "DialogueId": 11
     },
@@ -76,7 +76,7 @@
     },
     {
 
-      "DialogueLine": "We were attacked by troops waiting in buildings. Friends left and right were knocked clean off of their feet. Somehow I just keep running forward, and then dodged behind the first building that looked unoccupied and when the gun clamor became distant.",
+      "DialogueLine": "We were attacked by troops waiting in buildings. Friends left and right were knocked clean off of their feet. Somehow I just escaped, ran past them and then dodged behind the first building that looked unoccupied and when I couldn't hear the gunshots as close anymore'.",
       "PlayerResponseOption": 102,
       "DialogueId": 14
     },
@@ -88,7 +88,7 @@
     },
     {
 
-      "DialogueLine": "What?! Man, we're wasting time here! The German troops are only 5 blocks away from me (between me and the ocean). I need help right now!",
+      "DialogueLine": "What?! Man, we're wasting time here! The German troops are only 5 blocks away from me (between me and the ocean). I need HELP right NOW!",
       "PlayerResponseOption": 201,
       "DialogueId": 16
     },
@@ -100,41 +100,41 @@
     },
     {
 
-      "DialogueLine": "I can't remember every minute detail when I've been focused on getting out of here! I need help! How can I get out of here?",
+      "DialogueLine": "I can't remember every small detail when I've been focused on getting out of here! I need help! How can I get out of here?",
       "PlayerResponseOption": 201,
       "DialogueId": 18
     },
     {
-      "DialogueLine": "Look, all I know is people started rushing to those boats, and without explanation some of those went ahead and left...",
+      "DialogueLine": "Listen, all I know is people started rushing to those boats, and without explanation some of those went ahead and left...",
       "PlayerResponseOption": 202,
       "DialogueId": 19
     },
     {
-      "DialogueLine": "There was some mention of troops to be left behind so the rest could escape, but before any orders were given... German soldiers started coming out of the woodwork like they were waiting for us to be left for them.",
+      "DialogueLine": "There was some mention of troops being left behind so the rest could escape, but before any orders were given... German soldiers started coming out of the woodwork.",
       "PlayerResponseOption": 202,
       "DialogueId": 20
     },
     {
 
-      "DialogueLine": "And we were man, my squad, the 16th was the furthest back and got annihilated.",
+      "DialogueLine": "My squad, the 16th was the furthest back and got annihilated.",
       "PlayerResponseOption": 202,
       "DialogueId": 21
     },
     {
 
-      "DialogueLine": "The sole reason I survived is by running to the left and I kept running...",
+      "DialogueLine": "The sole reason I survived is by dodging to the left of the massacre and I just kept running...",
       "PlayerResponseOption": 202,
       "DialogueId": 22
     },
     {
 
-      "DialogueLine": "Then ran inland 5 blocks til I couldn't hear gunshots as closely.",
+      "DialogueLine": "Ran inland 5 blocks until I couldn't hear gunshots as closely.",
       "PlayerResponseOption": 202,
       "DialogueId": 23
     },
     {
 
-      "DialogueLine": "Dove into this abandoned restaurant building.",
+      "DialogueLine": "Dove into this abandoned restaurant (or bakery?) building.",
       "PlayerResponseOption": 202,
       "DialogueId": 24
     },

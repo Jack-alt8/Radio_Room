@@ -18,7 +18,7 @@
 
 <!--Weather api implementation-->
 <MudStack Class="pa-5">
-    <MudText Color="Color.Warning" Typo="Typo.subtitle1">Coordinates: lat = 51.0344 & long = 2.3768</MudText>
+    <MudText Color="Color.Warning" Typo="Typo.subtitle1">Coordinates: 51.0344, 2.3768</MudText>
     <MudText Color="Color.Warning" Typo="Typo.subtitle1">Country: FR</MudText>
     <MudText Color="Color.Warning" Typo="Typo.subtitle1">Current Weather in Dunkirk: @weatherCheck </MudText> 
 </MudStack>
@@ -71,7 +71,7 @@
 <MudButtonGroup Justify="Justify.Center" Color="Color.Secondary" Variant="Variant.Outlined" OverrideStyles="@override2ndResponsesStyles" hidden="@Hide1stOptionButtonGroup">
     <MudButton Class="button" Color="Color.Tertiary" Variant="Variant.Filled" Disabled=@disable101Option @onclick='(() => LoadSpecificDialogue(responseOption101))'>
         <MudText Color="Color.Primary">
-        Yes! Could you describe your surrounding? What's your situation?</MudText>
+        Yes! Could you describe your surroundings? What's your situation?</MudText>
     </MudButton>
     <MudButton Class="button" Color="Color.Tertiary" Variant="Variant.Filled" Disabled=@disable102Option @onclick='(() => LoadSpecificDialogue(responseOption102))'>
         <MudText Color="Color.Primary">
@@ -94,9 +94,8 @@
     <MudButton Class="button" Color="Color.Tertiary" Variant="Variant.Filled" Disabled=@disable201Option @onclick='(() => LoadSpecificDialogue(responseOption201))'>
         <MudText Color="Color.Primary">
         I'm going to need more proof of identity.
-        Could you give some more information on your squad commander, 
-        your squad number, and anything else related to identifying you, 
-        so I can check? </MudText></MudButton>
+        Could you give me some more information on your squad commander, 
+        and your squad number, so I can check? </MudText></MudButton>
     <MudButton Class="button" Color="Color.Tertiary" Variant="Variant.Filled" Disabled=@disable202Option @onclick='(() => LoadSpecificDialogue(responseOption202))'>
         <MudText Color="Color.Primary">
         Why weren't you able to escape with the others?
@@ -116,7 +115,7 @@
     <MudText> @dialogue16.DialogueLine</MudText>
 </MudStack>
 
-<MudText class="pa-3" Color="Color.Info">(This is only a demo, click on a response, save, reload the page to start over, and load to go back to previous save)</MudText>
+<MudText class="pa-3" Color="Color.Info">(This is only a demo, click on a response, save, reload the page to start over, and load to go back to previous save.)</MudText>
 
 @code {
 
