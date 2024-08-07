@@ -11,7 +11,7 @@
     <MudButton Class="button" Color="Color.Success" Variant="Variant.Filled" @onclick='(async () => await ProgressSaver.CopyFileAsync(savedResponseOptions))'>
             <MudText Color="Color.Info" Typo="Typo.h6">Save</MudText>
     </MudButton>
-    <MudButton Class="button" Color="Color.Success" Variant="Variant.Filled" @onclick='(async () => (await ProgressSaver.ReadFileAsync()).ToList().ForEach(y => LoadSpecificDialogue(y)))'>
+    <MudButton Class="button" Color="Color.Success" Variant="Variant.Filled" Disabled=@disableLoadButton @onclick='(async () => (await ProgressSaver.ReadFileAsync()).ToList().ForEach(y => LoadSpecificDialogue(y)))'>
         <MudText Color="Color.Info" Typo="Typo.h6">Load</MudText>
     </MudButton>
 </MudStack>
@@ -115,11 +115,11 @@
     <MudText> @dialogue16.DialogueLine</MudText>
 </MudStack>
 
-<MudText class="pa-3" Color="Color.Info">(This is only a demo, click on a response, save, reload the page to start over, and load to go back to previous save.)</MudText>
+<MudText class="pa-3" Color="Color.Info">(This is only a demo, click on a response, save, refresh the page to start over, and load to go back to previous save.)</MudText>
 
 @code {
 
-    /*
+     /*
      * =====================================================================================================================
      * OpenWeather API call and data retrieval:
      * =====================================================================================================================
@@ -140,17 +140,17 @@
     }
 
     /*
-     * ==========================================================================================================
-     * >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> | Add api key here (after appid=) \/ |
-     * ==========================================================================================================
-     */
+    * ==========================================================================================================
+    * >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> | Add api key here (after appid=) \/ |
+    * ==========================================================================================================
+    */
     private const string url = "https://api.openweathermap.org/data/2.5/weather?lat=51.0344&lon=2.3768&appid=";
 
     /*
-     * ==========================================================================================================
-     * Initializing Dialogue Database
-     * ==========================================================================================================
-     * */
+    * ==========================================================================================================
+    * Initializing Dialogue Database
+    * ==========================================================================================================
+    * */
     public async Task SeedDataAsync()
     {
         var context = new Radio_RoomDbContext();
@@ -219,10 +219,10 @@
     }
 
     /*
-     * ===========================================================================================================================
-     * Dialogue functionality code: 
-     * ===========================================================================================================================
-     */
+    * ===========================================================================================================================
+    * Dialogue functionality code: 
+    * ===========================================================================================================================
+    */
 
     // possible player responses:
     public int responseOption1 = 1;
@@ -285,6 +285,8 @@
     public bool disable201Option { get; set; } = false;
     public bool disable202Option { get; set; } = false;
 
+    public bool disableLoadButton { get; set; } = false;
+
     // hidden attribute dependant on which player response choice
     public bool Hide1stOptionButtonGroup { get; set; } = true;
     public bool Hide2ndOptionButtonGroup { get; set; } = true;
@@ -310,6 +312,8 @@
             var characterResponse4 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 4).FirstOrDefault();
             dialogue4 = characterResponse4;
 
+            disableLoadButton = true;
+
             override1stResponsesStyles = false;
 
             Hide1stOptionButtonGroup = false;
@@ -329,6 +333,8 @@
 
             var characterResponse4 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 8).FirstOrDefault();
             dialogue4 = characterResponse4;
+
+            disableLoadButton = true;
 
             override1stResponsesStyles = false;
 
@@ -350,6 +356,8 @@
             var characterResponse4 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 12).FirstOrDefault();
             dialogue8 = characterResponse4;
 
+            disableLoadButton = true;
+
             override2ndResponsesStyles = false;
 
             disable102Option = true;
@@ -365,6 +373,8 @@
             var characterResponse3 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 15).FirstOrDefault();
             dialogue7 = characterResponse3;
 
+            disableLoadButton = true;
+
             override2ndResponsesStyles = false;
 
             disable101Option = true;
@@ -379,6 +389,8 @@
 
             var characterResponse3 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 18).FirstOrDefault();
             dialogue11 = characterResponse3;
+
+            disableLoadButton = true;
 
             override2ndResponsesStyles = false;
 
@@ -409,6 +421,8 @@
 
             var characterResponse8 = dialogues.Where(s => s.PlayerResponseOption == responseOption && s.DialogueId == 26).FirstOrDefault();
             dialogue16 = characterResponse8;
+
+            disableLoadButton = true;
 
             override2ndResponsesStyles = false;
 

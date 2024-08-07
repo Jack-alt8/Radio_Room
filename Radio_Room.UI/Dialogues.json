@@ -100,7 +100,7 @@
     },
     {
 
-      "DialogueLine": "I can't remember every small detail when I've been focused on getting out of here! I need help! How can I get out of here?",
+      "DialogueLine": "I can't remember every small detail, since I've been focused on getting out of here! I need help! How can I get out of here?",
       "PlayerResponseOption": 201,
       "DialogueId": 18
     },
