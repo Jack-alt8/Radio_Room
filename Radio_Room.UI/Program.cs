@@ -12,7 +12,7 @@ using System.Runtime.CompilerServices;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddMudServices();
 
-// Add services to the container.
+// Add services to the container
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddDbContext<Radio_RoomDbContext>();
