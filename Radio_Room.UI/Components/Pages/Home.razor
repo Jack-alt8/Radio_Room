@@ -144,7 +144,7 @@
     * >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> | Add api key here (after appid=) \/ |
     * ==========================================================================================================
     */
-    private const string url = "https://api.openweathermap.org/data/2.5/weather?lat=51.0344&lon=2.3768&appid=b2658dd79bd83755349918912cff2341";
+    private const string url = "https://api.openweathermap.org/data/2.5/weather?lat=51.0344&lon=2.3768&appid=";
 
     /*
     * ==========================================================================================================
@@ -155,8 +155,7 @@
     {
         var context = new Radio_RoomDbContext();
 
-        try
-        {
+        
             if (!context.Dialogues.Any())
             {
                 IEnumerable<Dialogue> dialogues = GetDialoguesFromExternalDatabase();
@@ -164,11 +163,7 @@
                 var result = await context.SaveChangesAsync();
                 Console.WriteLine($"Result: {result}");
             }
-        }
-        catch (ArgumentException ex)
-        {
-
-        }
+        
     }
 
     public class DialogsList { public List<Dialogue> Dialogues = []; };
@@ -179,7 +174,7 @@
         string jsonString = File.ReadAllText(pathToDialogueJson);
         var dialogues = JsonConvert.DeserializeObject<DialogsList>(jsonString);
 
-        return dialogues.Dialogues;
+        return dialogues?.Dialogues ?? new List<Dialogue>();
 
     }
 
