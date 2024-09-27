@@ -17,7 +17,10 @@ Radio_Room is an interactive World War 2 text-based web game demo. Help  Private
 
 2. Make sure to put the api key in to the file Radio_Room.UI/Components/Pages/Home.razor on the "string url" on line 147 after "appid=" (email me for the key if you don't have it already at jackc.baylor@gmail.com).
 
-3. In the file, run "dotnet ef database update" (to download the database) in the vs console.
+3. In the file, run "dotnet ef database update" (to download the database) in the vs console. Make sure you have Microsoft.EntityFrameworkCore.Tools downloaded for this command to work "dotnet tool install --global dotnet-ef". 
 
 4. Finally, build the project and enjoy!
+
+##### Extra:
+1. Make sure to run this on Edge. Chrome will not allow a selfside certificate.
 
