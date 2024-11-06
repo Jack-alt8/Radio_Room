@@ -1,0 +1,28 @@
+Tasks:
+
+1. Carve out weather razorhtml into a razor component, with all the code - 
+referenced in the razor.html as weathercomponent
+
+2. automatic save (on the backend) - Store past dialogue options, tell blazor to iterate over 
+past dialogue options and render it 
+
+define a dialogueset as a class - put this in the database as another table with 
+only three columns:
+(each with more numbers pointing to the other table) 2 foreign keys, a primary key, dialogue set
+
+public Dictionary<int, response>; define styles in this class 
+
+figure out linkage from one dialogueset to the next, depending on which option the player chooses
+
+3. get rid of the repetitious code tied to dialogue html, and fix it
+
+4. populate dictionary from dialogueset database table to connect appropiate responses to, with ints 
+(dictionary components are what are logged in to the automatic save)
+
+5. if the outcome saved is null then game over with a while loop, after while loop 
+"thanks for playing" 
+
+6. Make sure the code to database is modular and the database will automatically update itself
+
+7. store all data in lists, use a parser and if else loop to find line breaks, 
+make it look nice through code and push that into the mudtext
